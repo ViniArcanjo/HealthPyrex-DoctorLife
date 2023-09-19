@@ -5,12 +5,14 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { styles } from './Input.style'
 import { AppColors } from '../../../config/colors'
 
-export function Input({ label, placeholder, type }) {
-  const [value, setValue] = useState()
+export function Input({ label, placeholder, type, onInputChange }) {
   const [showPassword, setShowPassword] = useState(false)
+  const [showInputValue, setShowInputValue] = useState(true)
+  const [value, setValue] = useState('')
 
   function toggleShowPassword() {
     setShowPassword(!showPassword)
+    setShowInputValue(!showInputValue)
   }
 
   return (
@@ -24,9 +26,12 @@ export function Input({ label, placeholder, type }) {
           ]}
           keyboardType={type}
           placeholder={placeholder ?? 'Digite aqui...'}
-          secureTextEntry={!showPassword}
+          secureTextEntry={showInputValue}
           value={value}
-          onChangeText={setValue}
+          onChangeText={inputValue => {
+            setValue(inputValue)
+            onInputChange(value)
+          }}
         />
         {type == 'visible-password' && (
           <TouchableWithoutFeedback onPress={toggleShowPassword}>
