@@ -1,35 +1,37 @@
-import { StyleSheet } from 'react-native'
-import { AppColors } from '../../../config/colors'
+import { StyleSheet } from "react-native";
+import { AppColors } from "../../../config/colors";
 
 export const styles = StyleSheet.create({
   icon: {
-    position: 'absolute',
-    right: 10
+    position: "absolute",
+    right: 16,
   },
   input: {
-    padding: 10,
+    width: "100%",
+    padding: 8,
+    paddingLeft: 20,
     borderWidth: 0,
-    borderColor: 'transparent'
+    borderColor: "transparent",
+    fontWeight: "500",
   },
   inputContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    position: 'relative',
-    width: 256,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    position: "relative",
+    width: "100%",
     borderRadius: 24,
     borderWidth: 1,
-    borderColor: AppColors.light
+    borderColor: AppColors.light,
   },
   text: {
-    marginLeft: 8,
     color: AppColors.dark,
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
   wrapper: {
-    alignItems: 'flex-start',
-    gap: 6
-  }
-})
+    alignItems: "flex-start",
+    gap: 6,
+  },
+});

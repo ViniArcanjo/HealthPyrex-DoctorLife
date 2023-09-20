@@ -1,11 +1,17 @@
-import { useState } from "react";
-import { TextInput, View, Text, TouchableWithoutFeedback } from "react-native";
+import { useEffect, useState } from "react";
+import {
+  TextInput,
+  View,
+  Text,
+  TouchableWithoutFeedback,
+  Alert,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { styles } from "./Input.style";
 import { AppColors } from "../../../config/colors";
 
-export function Input({ label, placeholder, type }) {
+export function Input({ label, placeholder, onSearch, type = "default" }) {
   const [value, setValue] = useState();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -13,22 +19,28 @@ export function Input({ label, placeholder, type }) {
     setShowPassword(!showPassword);
   }
 
+  function handleSearch() {
+    onSearch(value);
+  }
+
+  useEffect(() => {
+    if (!value) {
+      onSearch();
+    }
+  }, [value]);
+
   return (
     <View style={styles.wrapper}>
       <Text style={styles.text}>{label}</Text>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={[
-            styles.input,
-            { width: type == "visible-password" ? 220 : 256 },
-          ]}
-          keyboardType={type}
-          placeholder={placeholder ?? "Digite aqui..."}
-          secureTextEntry={!showPassword}
-          value={value}
-          onChangeText={setValue}
-        />
-        {type == "visible-password" && (
+      {type == "password" && (
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={[styles.input]}
+            placeholder={placeholder ?? "Digite aqui..."}
+            secureTextEntry={!showPassword}
+            value={value}
+            onChangeText={setValue}
+          />
           <TouchableWithoutFeedback onPress={toggleShowPassword}>
             <MaterialCommunityIcons
               name={showPassword ? "eye" : "eye-off"}
@@ -37,8 +49,26 @@ export function Input({ label, placeholder, type }) {
               style={styles.icon}
             />
           </TouchableWithoutFeedback>
-        )}
-      </View>
+        </View>
+      )}
+      {type == "default" && (
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={[styles.input]}
+            placeholder={placeholder ?? "Digite aqui..."}
+            value={value}
+            onChangeText={setValue}
+          />
+          <TouchableWithoutFeedback onPress={handleSearch}>
+            <MaterialCommunityIcons
+              name="magnify"
+              size={24}
+              color={AppColors.neutral_500}
+              style={styles.icon}
+            />
+          </TouchableWithoutFeedback>
+        </View>
+      )}
     </View>
   );
 }
