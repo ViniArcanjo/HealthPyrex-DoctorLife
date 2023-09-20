@@ -10,7 +10,6 @@ export default function AuthProvider({ children }) {
 
   function SignIn(email) {
     setUser({ email })
-    console.log(user)
   }
 
   function setKeepConnected(keepConnected) {

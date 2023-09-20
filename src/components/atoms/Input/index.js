@@ -1,49 +1,48 @@
-import { useEffect, useState } from "react";
-import {
-  TextInput,
-  View,
-  Text,
-  TouchableWithoutFeedback,
-  Alert,
-} from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useEffect, useState } from 'react'
+import { TextInput, View, Text, TouchableWithoutFeedback } from 'react-native'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
-import { styles } from "./index.style";
-import { AppColors } from "../../../config/colors";
+import { styles } from './index.style'
+import { AppColors } from '../../../config/colors'
 
-export function Input({ label, placeholder, onSearch, type = "default" }) {
-  const [value, setValue] = useState();
-  const [showPassword, setShowPassword] = useState(false);
+export function Input({
+  label,
+  placeholder,
+  onChange = () => {},
+  onSearch = () => {},
+  type = 'default'
+}) {
+  const [value, setValue] = useState()
+  const [showPassword, setShowPassword] = useState(false)
 
   function toggleShowPassword() {
-    setShowPassword(!showPassword);
+    setShowPassword(!showPassword)
   }
 
   function handleSearch() {
-    onSearch(value);
+    onSearch(value)
   }
 
   useEffect(() => {
     if (!value) {
-      onSearch();
+      onSearch()
     }
-  }, [value]);
+  }, [value])
 
   return (
     <View style={styles.wrapper}>
       <Text style={styles.text}>{label}</Text>
-      {type == "password" && (
+      {type == 'password' && (
         <View style={styles.inputContainer}>
           <TextInput
             style={[styles.input]}
-            placeholder={placeholder ?? "Digite aqui..."}
+            placeholder={placeholder ?? 'Digite aqui...'}
             secureTextEntry={!showPassword}
             value={value}
-            onChangeText={setValue}
           />
           <TouchableWithoutFeedback onPress={toggleShowPassword}>
             <MaterialCommunityIcons
-              name={showPassword ? "eye" : "eye-off"}
+              name={showPassword ? 'eye' : 'eye-off'}
               size={24}
               color={AppColors.light}
               style={styles.icon}
@@ -51,11 +50,11 @@ export function Input({ label, placeholder, onSearch, type = "default" }) {
           </TouchableWithoutFeedback>
         </View>
       )}
-      {type == "default" && (
+      {type == 'search' && (
         <View style={styles.inputContainer}>
           <TextInput
             style={[styles.input]}
-            placeholder={placeholder ?? "Digite aqui..."}
+            placeholder={placeholder ?? 'Digite aqui...'}
             value={value}
             onChangeText={setValue}
             onSubmitEditing={handleSearch}
@@ -70,6 +69,18 @@ export function Input({ label, placeholder, onSearch, type = "default" }) {
           </TouchableWithoutFeedback>
         </View>
       )}
+      {type != 'search' && type != 'password' && (
+        <View style={styles.inputContainer}>
+          <TextInput
+            keyboardType={type}
+            style={[styles.input]}
+            placeholder={placeholder ?? 'Digite aqui...'}
+            value={value}
+            onChangeText={onChange}
+            onSubmitEditing={handleSearch}
+          />
+        </View>
+      )}
     </View>
-  );
+  )
 }

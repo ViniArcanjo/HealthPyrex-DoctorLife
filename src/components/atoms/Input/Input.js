@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { TextInput, View, Text, TouchableWithoutFeedback } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
-import { styles } from './Input.style'
+import { styles } from './index.style'
 import { AppColors } from '../../../config/colors'
 
 export function Input({ label, placeholder, type, onInputChange }) {

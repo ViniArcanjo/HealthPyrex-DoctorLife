@@ -15,7 +15,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     gap: 4,
-    marginLeft: 8
+    marginLeft: 8,
+    marginBottom: 8
+  },
+  loginFormContainer: {
+    width: 256,
+    gap: 16
   },
   passwordInputContainer: {
     gap: 6
@@ -26,11 +31,20 @@ export const styles = StyleSheet.create({
     color: AppColors.dark,
     fontSize: 8
   },
+  switch: {
+    transform: [{ scaleX: 0.8 }, { scaleY: 0.8 }]
+  },
+  switchContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 32
+  },
   wrapper: {
     display: 'flex',
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    gap: 16
+    justifyContent: 'center'
   }
 })
