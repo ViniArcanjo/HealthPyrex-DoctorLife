@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
-import {
-  TextInput,
-  View,
-  Text,
-  TouchableWithoutFeedback,
-  Alert,
-} from "react-native";
+import { TextInput, View, TouchableWithoutFeedback } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { styles } from "./index.style";
 import { AppColors } from "../../../config/colors";
+import Text from "../Text";
 
 export function Input({ label, placeholder, onSearch, type = "default" }) {
   const [value, setValue] = useState();

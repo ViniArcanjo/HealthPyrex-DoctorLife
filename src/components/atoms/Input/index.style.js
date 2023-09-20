@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     paddingLeft: 20,
     borderWidth: 0,
     borderColor: "transparent",
-    fontWeight: "500",
+    fontFamily: "Montserrat_700Bold",
   },
   inputContainer: {
     display: "flex",

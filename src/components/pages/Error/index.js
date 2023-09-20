@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { AppColors } from "../../../config/colors";
+import Text from "../../atoms/Text";
 
 const Error = ({ screen }) => {
   return (
@@ -11,7 +12,9 @@ const Error = ({ screen }) => {
         size={48}
         color={AppColors.error}
       />
-      <Text style={styles.text}>{screen} ainda não implementado</Text>
+      <Text style={styles.text} bold>
+        {screen} ainda não implementado
+      </Text>
     </View>
   );
 };
@@ -26,7 +29,6 @@ export const styles = StyleSheet.create({
     backgroundColor: AppColors.white_100,
   },
   text: {
-    fontWeight: "bold",
     fontSize: 16,
   },
 });

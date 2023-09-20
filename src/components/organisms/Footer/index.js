@@ -1,11 +1,12 @@
 import { styles } from "./index.style";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 
 import { AppColors } from "../../../config/colors";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { useNavigation } from "@react-navigation/native";
+import Text from "../../atoms/Text";
 
 const Footer = () => {
   const navigation = useNavigation();
