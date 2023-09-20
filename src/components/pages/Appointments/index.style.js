@@ -11,6 +11,6 @@ export const styles = StyleSheet.create({
   itemContent: {
     paddingVertical: 16,
     borderBottomWidth: 0.2,
-    borderBottomColor: AppColors.white_100,
+    borderBottomColor: AppColors.neutral_500,
   },
 });
