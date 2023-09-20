@@ -4,11 +4,12 @@ import { AppColors } from "../../../config/colors";
 export const styles = StyleSheet.create({
   footer: {
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "space-around",
-    height: 64,
+    height: 80,
+    paddingTop: 8,
     borderTopColor: AppColors.neutral_600,
-    borderTopWidth: 0.5,
+    borderTopWidth: 0.2,
   },
   item: {
     flexDirection: "column",

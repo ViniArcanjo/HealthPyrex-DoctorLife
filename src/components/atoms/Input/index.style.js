@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   },
   input: {
     width: "100%",
-    padding: 8,
+    padding: 16,
     paddingLeft: 20,
     borderWidth: 0,
     borderColor: "transparent",
@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
   },
   text: {
     color: AppColors.dark,
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "bold",
   },
   wrapper: {

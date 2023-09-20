@@ -87,7 +87,7 @@ const Appointments = () => {
   };
 
   return (
-    <View style={{ flex: 1, paddingHorizontal: 32 }}>
+    <View style={styles.container}>
       <Input placeholder="Buscar" onSearch={(value) => onSearch(value)} />
 
       <FlatList

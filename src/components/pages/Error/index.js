@@ -23,6 +23,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: AppColors.white_100,
   },
   text: {
     fontWeight: "bold",

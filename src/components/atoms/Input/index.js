@@ -58,6 +58,7 @@ export function Input({ label, placeholder, onSearch, type = "default" }) {
             placeholder={placeholder ?? "Digite aqui..."}
             value={value}
             onChangeText={setValue}
+            onSubmitEditing={handleSearch}
           />
           <TouchableWithoutFeedback onPress={handleSearch}>
             <MaterialCommunityIcons

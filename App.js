@@ -10,6 +10,7 @@ import Exams from "./src/components/pages/Exams";
 import More from "./src/components/pages/More";
 
 import Footer from "./src/components/organisms/Footer";
+import { StatusBar } from "expo-status-bar";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,13 +18,13 @@ export default function App() {
   return (
     <NavigationContainer>
       <View style={styles.base}>
+        <StatusBar barStyle="dark-content" />
         <Stack.Navigator>
           <Stack.Screen
             name="Home"
             component={Home}
             options={{
               headerShown: false,
-              backgroundColor: AppColors.white_100,
             }}
           />
           <Stack.Screen
@@ -31,7 +32,6 @@ export default function App() {
             component={Appointments}
             options={{
               headerShown: false,
-              backgroundColor: AppColors.white_100,
             }}
           />
           <Stack.Screen
@@ -39,7 +39,6 @@ export default function App() {
             component={Exams}
             options={{
               headerShown: false,
-              backgroundColor: AppColors.white_100,
             }}
           />
           <Stack.Screen
@@ -62,6 +61,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: AppColors.white_100,
     // fontFamily: "Montserrat-Regular",
-    paddingTop: 32,
+    paddingTop: 48,
   },
 });

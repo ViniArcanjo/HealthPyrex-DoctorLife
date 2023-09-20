@@ -28,9 +28,14 @@ const Footer = () => {
         style={styles.item}
         onPress={() => navigation.navigate("Appointments")}
       >
-        <Image
+        {/* <Image
           style={AppColors.dark}
           source={require("../../../../assets/appointment.png")}
+        /> */}
+        <MaterialCommunityIcons
+          name="medical-bag"
+          size={24}
+          color={AppColors.dark}
         />
         <Text>Consultas</Text>
       </TouchableOpacity>
