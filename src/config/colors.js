@@ -14,5 +14,5 @@ export const AppColors = {
   dark_900: "#000000",
 
   success: "#08a93c",
-  error: "#bf0449",
+  error: "#FF0000",
 };

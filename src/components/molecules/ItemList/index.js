@@ -1,4 +1,4 @@
-import { styles } from "./itemList.style";
+import { styles } from "./index.style";
 import { Text, View } from "react-native";
 
 const ItemList = ({ exame, doctor, date }) => {
