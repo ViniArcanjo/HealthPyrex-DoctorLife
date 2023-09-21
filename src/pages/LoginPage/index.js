@@ -5,17 +5,33 @@ import Checkbox from 'expo-checkbox'
 import { AuthContext } from '../../context/auth.context'
 import { Input } from '../../components/atoms/Input'
 import Button from '../../components/atoms/Button'
-import { styles } from './LoginPage.style'
+import { styles } from './index.style'
 import { AppColors } from '../../config/colors'
 
 export function LoginPage({ navigation }) {
-  const { user, setKeepConnected, SignIn } = useContext(AuthContext)
+  const { setKeepConnected, SignIn } = useContext(AuthContext)
 
+  const [userEmail, setUserEmail] = useState('')
+  const [userPass, setUserPass] = useState('')
   const [keepUserConnected, setKeepUserConnected] = useState(false)
   const [isDoctor, setIsDoctor] = useState(false)
 
-  function onInputChange(email) {
-    SignIn(email)
+  function onUserEnterClick() {
+    if (!userEmail || !userPass) {
+      Alert.alert('Digite seu email e senha!')
+      return
+    }
+
+    const user = {
+      email: userEmail,
+      password: userPass,
+      role: isDoctor ? 'doctor' : 'patient',
+      keepConnected: keepUserConnected
+    }
+
+    SignIn(user)
+
+    navigation.navigate('Home')
   }
 
   function handleKeepUserConnected() {
@@ -25,16 +41,6 @@ export function LoginPage({ navigation }) {
 
   function toggleSwitch() {
     setIsDoctor(!isDoctor)
-  }
-
-  function handleLoginPress() {
-    if (user.email) {
-      navigation.navigate('Home')
-
-      return
-    }
-
-    Alert.alert('Digite seu email e senha!')
   }
 
   return (
@@ -51,14 +57,14 @@ export function LoginPage({ navigation }) {
       </View>
       <View style={styles.loginFormContainer}>
         <Input
-          onChange={onInputChange}
+          onChange={setUserEmail}
           label={'Login'}
           placeholder={'Digite aqui seu email'}
           type={'email-address'}
         />
         <View style={styles.passwordInputContainer}>
           <Input
-            onChange={onInputChange}
+            onChange={setUserPass}
             label={'Senha'}
             placeholder={'Digite aqui sua senha'}
             type={'password'}
@@ -82,8 +88,8 @@ export function LoginPage({ navigation }) {
         </View>
         <Button
           title={'ENTRAR'}
-          onPress={handleLoginPress}
-          disabled={!user.email}
+          onPress={onUserEnterClick}
+          disabled={!userEmail || !userPass}
         />
       </View>
     </SafeAreaView>

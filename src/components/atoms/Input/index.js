@@ -39,6 +39,7 @@ export function Input({
             placeholder={placeholder ?? 'Digite aqui...'}
             secureTextEntry={!showPassword}
             value={value}
+            onChangeText={onChange}
           />
           <TouchableWithoutFeedback onPress={toggleShowPassword}>
             <MaterialCommunityIcons
