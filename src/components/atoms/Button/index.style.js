@@ -7,6 +7,12 @@ export const styles = StyleSheet.create({
     backgroundColor: AppColors.neutral_400,
     padding: 8,
   },
+  disabled: {
+    borderRadius: 999,
+    backgroundColor: AppColors.neutral_400,
+    opacity: 0.5,
+    padding: 8,
+  },
   text: {
     fontSize: 16,
     fontWeight: "bold",

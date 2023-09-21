@@ -47,7 +47,7 @@ const Appointments = () => {
 
   return (
     <View style={styles.container}>
-      <Input placeholder="Buscar" onSearch={(value) => onSearch(value)} />
+      <Input placeholder="Buscar" onSearch={onSearch} />
 
       <FlatList
         data={appointmentList}

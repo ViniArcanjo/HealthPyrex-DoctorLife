@@ -12,15 +12,11 @@ import {
 
 import { AppColors } from "./src/config/colors";
 
-import Appointments from "./src/components/pages/Appointments";
-import Home from "./src/components/pages/Home";
-import Exams from "./src/components/pages/Exams";
-import More from "./src/components/pages/More";
+import AuthProvider from './src/context/auth.context'
+import Routes from './src/routes/Routes'
+import { StyleSheet, View } from 'react-native'
 
-import Footer from "./src/components/organisms/Footer";
-import { StatusBar } from "expo-status-bar";
-
-const Stack = createNativeStackNavigator();
+import { AppColors } from './src/config/colors'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -36,43 +32,14 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <View style={styles.base}>
-        <StatusBar barStyle="dark-content" />
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Home"
-            component={Home}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="Appointments"
-            component={Appointments}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="Exams"
-            component={Exams}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="More"
-            component={More}
-            options={{
-              headerShown: false,
-              backgroundColor: AppColors.white_100,
-            }}
-          />
-        </Stack.Navigator>
-        <Footer />
-      </View>
+      <AuthProvider>
+        <View style={styles.base}>
+          <StatusBar barStyle="dark-content" />
+          <Routes />
+        </View>
+      </AuthProvider>
     </NavigationContainer>
-  );
+  )
 }
 
 const styles = StyleSheet.create({

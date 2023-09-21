@@ -6,7 +6,13 @@ import { styles } from "./index.style";
 import { AppColors } from "../../../config/colors";
 import Text from "../Text";
 
-export function Input({ label, placeholder, onSearch, type = "default" }) {
+export function Input({
+  label,
+  placeholder,
+  onChange = () => {},
+  onSearch = () => {},
+  type = "default",
+}) {
   const [value, setValue] = useState();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -34,7 +40,7 @@ export function Input({ label, placeholder, onSearch, type = "default" }) {
             placeholder={placeholder ?? "Digite aqui..."}
             secureTextEntry={!showPassword}
             value={value}
-            onChangeText={setValue}
+            onChangeText={onChange}
           />
           <TouchableWithoutFeedback onPress={toggleShowPassword}>
             <MaterialCommunityIcons
@@ -46,7 +52,7 @@ export function Input({ label, placeholder, onSearch, type = "default" }) {
           </TouchableWithoutFeedback>
         </View>
       )}
-      {type == "default" && (
+      {type == "search" && (
         <View style={styles.inputContainer}>
           <TextInput
             style={[styles.input]}
@@ -63,6 +69,18 @@ export function Input({ label, placeholder, onSearch, type = "default" }) {
               style={styles.icon}
             />
           </TouchableWithoutFeedback>
+        </View>
+      )}
+      {type != "search" && type != "password" && (
+        <View style={styles.inputContainer}>
+          <TextInput
+            keyboardType={type}
+            style={[styles.input]}
+            placeholder={placeholder ?? "Digite aqui..."}
+            value={value}
+            onChangeText={onChange}
+            onSubmitEditing={handleSearch}
+          />
         </View>
       )}
     </View>
