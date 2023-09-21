@@ -6,6 +6,7 @@ export const AppColors = {
 
   light: "#D9D9D9",
 
+  neutral_300: "#ECECEC",
   neutral_400: "#cecfd1",
   neutral_500: "#788089",
   neutral_600: "#424a52",

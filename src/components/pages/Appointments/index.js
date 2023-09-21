@@ -1,88 +1,47 @@
 import { styles } from "./index.style";
-
 import { useState } from "react";
 import { FlatList, View } from "react-native";
 
 import { Input } from "../../atoms/Input";
-import ItemList from "../../molecules/ItemList";
+import ItemAppointment from "../../molecules/ItemAppointment";
 
-const profiles = [
+const appointment = [
   {
     key: "1",
-    exame: "Oftalmológista",
+    appointment: "Consulta Oftalmo",
     doctor: "Frank Gualberto",
-    date: "01/11/2023",
+    date: "01/11/2023 08:00",
   },
   {
     key: "2",
-    exame: "Hemograma",
+    appointment: "Consulta Cardiologista",
     doctor: "Neli Knupp",
-    date: "05/10/2023",
+    date: "05/10/2023 17:00",
   },
   {
     key: "3",
-    exame: "Exame de urina",
+    appointment: "Consulta Otorrino",
     doctor: "Iára Linhares",
-    date: "19/11/2023",
-  },
-  {
-    key: "4",
-    exame: "Exame de glicemia",
-    doctor: "Adso da Souza",
-    date: "22/11/2023",
-  },
-  {
-    key: "5",
-    exame: "TSH",
-    doctor: "Maria Eliza",
-    date: "04/09/2023",
-  },
-  {
-    key: "6",
-    exame: "TSH",
-    doctor: "Maria Eliza",
-    date: "04/09/2023",
-  },
-  {
-    key: "7",
-    exame: "TSH",
-    doctor: "Maria Eliza",
-    date: "04/09/2023",
-  },
-  {
-    key: "8",
-    exame: "TSH",
-    doctor: "Maria Eliza",
-    date: "04/09/2023",
-  },
-  {
-    key: "9",
-    exame: "TSH",
-    doctor: "Maria Eliza",
-    date: "04/09/2023",
-  },
-  {
-    key: "10",
-    exame: "TSH",
-    doctor: "Maria Eliza",
-    date: "04/09/2023",
+    date: "19/11/2023 11:00",
   },
 ];
 
 const Appointments = () => {
-  const [profilesList, setProfilesList] = useState(profiles);
+  const [appointmentList, setAppointmentList] = useState(appointment);
 
   const onSearch = (value) => {
-    setProfilesList(profiles);
+    setAppointmentList(appointment);
 
     if (value) {
-      const newList = profiles.filter(
+      const newList = appointmentList.filter(
         (q) =>
-          q.exame.toLocaleUpperCase().includes(value?.toLocaleUpperCase()) ||
+          q.appointment
+            .toLocaleUpperCase()
+            .includes(value?.toLocaleUpperCase()) ||
           q.doctor.toLocaleUpperCase().includes(value?.toLocaleUpperCase())
       );
 
-      setProfilesList(newList);
+      setAppointmentList(newList);
     }
   };
 
@@ -91,11 +50,11 @@ const Appointments = () => {
       <Input placeholder="Buscar" onSearch={(value) => onSearch(value)} />
 
       <FlatList
-        data={profilesList}
+        data={appointmentList}
         renderItem={({ item }) => (
           <View style={styles.itemContent}>
-            <ItemList
-              exame={item.exame}
+            <ItemAppointment
+              appointment={item.appointment}
               doctor={item.doctor}
               date={item.date}
             />
