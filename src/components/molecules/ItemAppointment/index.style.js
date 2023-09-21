@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
+    borderTopWidth: 0.2,
   },
   card: {
     flex: 1,
@@ -19,8 +20,7 @@ export const styles = StyleSheet.create({
   },
   date: {
     fontSize: 12,
-    borderBottomWidth: 0.2,
-    padding: 4,
+    paddingBottom: 4,
   },
   appointment: {
     fontSize: 16,

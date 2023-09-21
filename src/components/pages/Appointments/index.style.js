@@ -9,6 +9,6 @@ export const styles = StyleSheet.create({
     backgroundColor: AppColors.white_100,
   },
   itemContent: {
-    paddingVertical: 8,
+    paddingVertical: 14,
   },
 });
