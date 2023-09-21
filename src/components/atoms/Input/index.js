@@ -4,6 +4,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { styles } from "./index.style";
 import { AppColors } from "../../../config/colors";
+
 import Text from "../Text";
 
 export function Input({
@@ -32,7 +33,9 @@ export function Input({
 
   return (
     <View style={styles.wrapper}>
-      <Text style={styles.text}>{label}</Text>
+      <Text style={styles.text} bold>
+        {label}
+      </Text>
       {type == "password" && (
         <View style={styles.inputContainer}>
           <TextInput
@@ -41,6 +44,7 @@ export function Input({
             secureTextEntry={!showPassword}
             value={value}
             onChangeText={onChange}
+            underlineColorAndroid="transparent"
           />
           <TouchableWithoutFeedback onPress={toggleShowPassword}>
             <MaterialCommunityIcons
@@ -60,6 +64,7 @@ export function Input({
             value={value}
             onChangeText={setValue}
             onSubmitEditing={handleSearch}
+            underlineColorAndroid="transparent"
           />
           <TouchableWithoutFeedback onPress={handleSearch}>
             <MaterialCommunityIcons
@@ -80,6 +85,7 @@ export function Input({
             value={value}
             onChangeText={onChange}
             onSubmitEditing={handleSearch}
+            underlineColorAndroid="transparent"
           />
         </View>
       )}

@@ -15,8 +15,7 @@ export const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    fontWeight: "bold",
     textAlign: "center",
-    fontFamily: "Montserrat_400Regular",
+    fontFamily: "Montserrat_700Bold",
   },
 });

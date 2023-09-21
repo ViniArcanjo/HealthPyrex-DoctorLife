@@ -26,9 +26,7 @@ export const styles = StyleSheet.create({
     borderColor: AppColors.light,
   },
   text: {
-    color: AppColors.dark,
     fontSize: 24,
-    fontWeight: "bold",
   },
   wrapper: {
     alignItems: "flex-start",

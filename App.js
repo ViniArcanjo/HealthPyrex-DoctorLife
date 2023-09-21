@@ -1,6 +1,6 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StatusBar } from "expo-status-bar";
 
 import {
   useFonts,
@@ -12,11 +12,8 @@ import {
 
 import { AppColors } from "./src/config/colors";
 
-import AuthProvider from './src/context/auth.context'
-import Routes from './src/routes/Routes'
-import { StyleSheet, View } from 'react-native'
-
-import { AppColors } from './src/config/colors'
+import AuthProvider from "./src/context/auth.context";
+import Routes from "./src/routes/Routes";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -39,14 +36,13 @@ export default function App() {
         </View>
       </AuthProvider>
     </NavigationContainer>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   base: {
     flex: 1,
     backgroundColor: AppColors.white_100,
-    fontFamily: "Montserrat_400Regular",
     paddingTop: 48,
   },
 });
