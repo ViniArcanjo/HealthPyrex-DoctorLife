@@ -52,7 +52,11 @@ const Exams = () => {
 
   return (
     <View style={styles.container}>
-      <Input placeholder="Buscar" onSearch={(value) => onSearch(value)} />
+      <Input
+        placeholder="Buscar"
+        onSearch={(value) => onSearch(value)}
+        type="search"
+      />
 
       <FlatList
         data={examsList}
