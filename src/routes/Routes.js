@@ -8,6 +8,7 @@ import Home from '../components/pages/Home'
 import Appointments from '../components/pages/Appointments'
 import Exams from '../components/pages/Exams'
 import More from '../components/pages/More'
+import Header from '../components/organisms/Header'
 import Footer from '../components/organisms/Footer'
 
 const Stack = createNativeStackNavigator()
@@ -24,6 +25,7 @@ export default function Routes() {
 
   return (
     <>
+      {isLoggedIn && <Header />}
       <Stack.Navigator
         initialRouteName="Login"
         screenOptions={{ headerShown: false }}
