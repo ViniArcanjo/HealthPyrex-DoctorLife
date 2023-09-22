@@ -1,5 +1,16 @@
-import Error from "../Error";
+import { View } from 'react-native'
+import { NotFound } from '../../atoms/NotFound'
 
-const Home = () => <Error screen="Home" />;
-
-export default Home;
+export default function Home() {
+  return (
+    <View
+      style={{
+        display: 'flex',
+        flex: 1,
+        justifyContent: 'center'
+      }}
+    >
+      <NotFound />
+    </View>
+  )
+}

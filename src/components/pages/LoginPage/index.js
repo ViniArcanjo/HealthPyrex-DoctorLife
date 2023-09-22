@@ -1,48 +1,48 @@
-import { styles } from "./index.style";
-import { useContext, useState } from "react";
-import { View, SafeAreaView, Alert, Switch } from "react-native";
-import Checkbox from "expo-checkbox";
+import { styles } from './index.style'
+import { useContext, useState } from 'react'
+import { View, SafeAreaView, Alert, Switch } from 'react-native'
+import Checkbox from 'expo-checkbox'
 
-import Text from "../../components/atoms/Text";
-import Button from "../../components/atoms/Button";
-import { Input } from "../../components/atoms/Input";
+import Text from '../../atoms/Text'
+import Button from '../../atoms/Button'
+import { Input } from '../../atoms/Input'
 
-import { AuthContext } from "../../context/auth.context";
-import { AppColors } from "../../config/colors";
+import { AuthContext } from '../../../context/auth.context'
+import { AppColors } from '../../../config/colors'
 
 export function LoginPage({ navigation }) {
-  const { setKeepConnected, SignIn } = useContext(AuthContext);
+  const { setKeepConnected, SignIn } = useContext(AuthContext)
 
-  const [userEmail, setUserEmail] = useState("");
-  const [userPass, setUserPass] = useState("");
-  const [keepUserConnected, setKeepUserConnected] = useState(false);
-  const [isDoctor, setIsDoctor] = useState(false);
+  const [userEmail, setUserEmail] = useState('')
+  const [userPass, setUserPass] = useState('')
+  const [keepUserConnected, setKeepUserConnected] = useState(false)
+  const [isDoctor, setIsDoctor] = useState(false)
 
   function onUserEnterClick() {
     if (!userEmail || !userPass) {
-      Alert.alert("Digite seu email e senha!");
-      return;
+      Alert.alert('Digite seu email e senha!')
+      return
     }
 
     const user = {
       email: userEmail,
       password: userPass,
-      role: isDoctor ? "doctor" : "patient",
-      keepConnected: keepUserConnected,
-    };
+      role: isDoctor ? 'doctor' : 'patient',
+      keepConnected: keepUserConnected
+    }
 
-    SignIn(user);
+    SignIn(user)
 
-    navigation.navigate("Home");
+    navigation.navigate('Home')
   }
 
   function handleKeepUserConnected() {
-    setKeepUserConnected(!keepUserConnected);
-    setKeepConnected(keepUserConnected);
+    setKeepUserConnected(!keepUserConnected)
+    setKeepConnected(keepUserConnected)
   }
 
   function toggleSwitch() {
-    setIsDoctor(!isDoctor);
+    setIsDoctor(!isDoctor)
   }
 
   return (
@@ -60,21 +60,21 @@ export function LoginPage({ navigation }) {
       <View style={styles.loginFormContainer}>
         <Input
           onChange={setUserEmail}
-          label={"Login"}
-          placeholder={"Digite aqui seu email"}
-          type={"email-address"}
+          label={'Login'}
+          placeholder={'Digite aqui seu email'}
+          type={'email-address'}
         />
         <View style={styles.passwordInputContainer}>
           <Input
             onChange={setUserPass}
-            label={"Senha"}
-            placeholder={"Digite aqui sua senha"}
-            type={"password"}
+            label={'Senha'}
+            placeholder={'Digite aqui sua senha'}
+            type={'password'}
           />
           <Text
             style={styles.passwordText}
             onPress={() =>
-              Alert.alert("Redirecionando para redefinição de senha...")
+              Alert.alert('Redirecionando para redefinição de senha...')
             }
           >
             Esqueci minha senha
@@ -83,17 +83,17 @@ export function LoginPage({ navigation }) {
             <Checkbox
               style={styles.checkbox}
               value={keepUserConnected}
-              onValueChange={(value) => handleKeepUserConnected(value)}
+              onValueChange={value => handleKeepUserConnected(value)}
             />
             <Text style={styles.checkboxText}>Mantenha-me conectado</Text>
           </View>
         </View>
         <Button
-          title={"ENTRAR"}
+          title={'ENTRAR'}
           onPress={onUserEnterClick}
           disabled={!userEmail || !userPass}
         />
       </View>
     </SafeAreaView>
-  );
+  )
 }

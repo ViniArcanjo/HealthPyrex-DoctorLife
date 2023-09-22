@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { AuthContext } from '../context/auth.context'
-import { LoginPage } from '../pages/LoginPage'
+import { LoginPage } from '../components/pages/LoginPage'
 import Home from '../components/pages/Home'
 import Appointments from '../components/pages/Appointments'
 import Exams from '../components/pages/Exams'
