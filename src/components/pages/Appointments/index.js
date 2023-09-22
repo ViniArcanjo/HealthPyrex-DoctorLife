@@ -1,101 +1,60 @@
-import { styles } from './index.style'
+import { styles } from "./index.style";
+import { useState } from "react";
+import { FlatList, View } from "react-native";
 
-import { useState } from 'react'
-import { FlatList, View } from 'react-native'
+import { Input } from "../../atoms/Input";
+import ItemAppointment from "../../molecules/ItemAppointment";
 
-import { Input } from '../../atoms/Input'
-import ItemList from '../../molecules/ItemList'
-
-const profiles = [
+const appointment = [
   {
-    key: '1',
-    exame: 'Oftalmológista',
-    doctor: 'Frank Gualberto',
-    date: '01/11/2023'
+    key: "1",
+    appointment: "Consulta Oftalmo",
+    doctor: "Frank Gualberto",
+    date: "01/11/2023 08:00",
   },
   {
-    key: '2',
-    exame: 'Hemograma',
-    doctor: 'Neli Knupp',
-    date: '05/10/2023'
+    key: "2",
+    appointment: "Consulta Cardiologista",
+    doctor: "Neli Knupp",
+    date: "05/10/2023 17:00",
   },
   {
-    key: '3',
-    exame: 'Exame de urina',
-    doctor: 'Iára Linhares',
-    date: '19/11/2023'
+    key: "3",
+    appointment: "Consulta Otorrino",
+    doctor: "Iára Linhares",
+    date: "19/11/2023 11:00",
   },
-  {
-    key: '4',
-    exame: 'Exame de glicemia',
-    doctor: 'Adso da Souza',
-    date: '22/11/2023'
-  },
-  {
-    key: '5',
-    exame: 'TSH',
-    doctor: 'Maria Eliza',
-    date: '04/09/2023'
-  },
-  {
-    key: '6',
-    exame: 'TSH',
-    doctor: 'Maria Eliza',
-    date: '04/09/2023'
-  },
-  {
-    key: '7',
-    exame: 'TSH',
-    doctor: 'Maria Eliza',
-    date: '04/09/2023'
-  },
-  {
-    key: '8',
-    exame: 'TSH',
-    doctor: 'Maria Eliza',
-    date: '04/09/2023'
-  },
-  {
-    key: '9',
-    exame: 'TSH',
-    doctor: 'Maria Eliza',
-    date: '04/09/2023'
-  },
-  {
-    key: '10',
-    exame: 'TSH',
-    doctor: 'Maria Eliza',
-    date: '04/09/2023'
-  }
-]
+];
 
 const Appointments = () => {
-  const [profilesList, setProfilesList] = useState(profiles)
+  const [appointmentList, setAppointmentList] = useState(appointment);
 
-  const onSearch = value => {
-    setProfilesList(profiles)
+  const onSearch = (value) => {
+    setAppointmentList(appointment);
 
     if (value) {
-      const newList = profiles.filter(
-        q =>
-          q.exame.toLocaleUpperCase().includes(value?.toLocaleUpperCase()) ||
+      const newList = appointmentList.filter(
+        (q) =>
+          q.appointment
+            .toLocaleUpperCase()
+            .includes(value?.toLocaleUpperCase()) ||
           q.doctor.toLocaleUpperCase().includes(value?.toLocaleUpperCase())
-      )
+      );
 
-      setProfilesList(newList)
+      setAppointmentList(newList);
     }
-  }
+  };
 
   return (
     <View style={styles.container}>
-      <Input placeholder="Buscar" onSearch={onSearch} />
+      <Input placeholder="Buscar" onSearch={onSearch} type="search" />
 
       <FlatList
-        data={profilesList}
+        data={appointmentList}
         renderItem={({ item }) => (
           <View style={styles.itemContent}>
-            <ItemList
-              exame={item.exame}
+            <ItemAppointment
+              appointment={item.appointment}
               doctor={item.doctor}
               date={item.date}
             />
@@ -104,7 +63,7 @@ const Appointments = () => {
         showsVerticalScrollIndicator={false}
       />
     </View>
-  )
-}
+  );
+};
 
-export default Appointments
+export default Appointments;

@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     paddingLeft: 20,
     borderWidth: 0,
     borderColor: "transparent",
-    fontWeight: "500",
+    fontFamily: "Montserrat_700Bold",
   },
   inputContainer: {
     display: "flex",
@@ -26,9 +26,7 @@ export const styles = StyleSheet.create({
     borderColor: AppColors.light,
   },
   text: {
-    color: AppColors.dark,
     fontSize: 24,
-    fontWeight: "bold",
   },
   wrapper: {
     alignItems: "flex-start",

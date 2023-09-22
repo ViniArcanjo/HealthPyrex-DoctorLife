@@ -4,7 +4,6 @@ import { AppColors } from "../../../config/colors";
 export const styles = StyleSheet.create({
   exame: {
     fontSize: 16,
-    fontWeight: "bold",
     color: AppColors.dark,
   },
   contentDoctor: {

@@ -1,10 +1,14 @@
 import { styles } from "./index.style";
-import { Text, View } from "react-native";
+import { View } from "react-native";
+
+import Text from "../../atoms/Text";
 
 const ItemList = ({ exame, doctor, date }) => {
   return (
     <View>
-      <Text style={styles.exame}>{exame}</Text>
+      <Text style={styles.exame} bold>
+        {exame}
+      </Text>
       <Text style={styles.contentDoctor}>
         {doctor} · Realizar até dia {date}
       </Text>
