@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     width: "100%",
     borderRadius: 24,
     borderWidth: 1,
-    borderColor: AppColors.light,
+    borderColor: AppColors.primary,
   },
   text: {
     fontSize: 24,

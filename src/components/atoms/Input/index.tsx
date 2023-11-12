@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { TextInput, View, TouchableWithoutFeedback } from "react-native";
+import {
+  TextInput,
+  View,
+  TouchableWithoutFeedback,
+  KeyboardTypeOptions,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { styles } from "./index.style";
@@ -7,13 +12,20 @@ import { AppColors } from "../../../config/colors";
 
 import Text from "../Text";
 
+interface InputProps {
+  label?: string;
+  placeholder: string;
+  type?: KeyboardTypeOptions | "password" | "search" | undefined;
+  onChange?: () => void;
+  onSearch?: (string) => void;
+}
 export function Input({
   label,
   placeholder,
-  onChange = () => {},
-  onSearch = () => {},
   type = "default",
-}) {
+  onChange,
+  onSearch,
+}: InputProps) {
   const [value, setValue] = useState();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -27,7 +39,7 @@ export function Input({
 
   useEffect(() => {
     if (!value) {
-      onSearch();
+      onSearch("");
     }
   }, [value]);
 
@@ -50,7 +62,7 @@ export function Input({
             <MaterialCommunityIcons
               name={showPassword ? "eye" : "eye-off"}
               size={24}
-              color={AppColors.light}
+              color={AppColors.neutral_300}
               style={styles.icon}
             />
           </TouchableWithoutFeedback>
@@ -62,7 +74,7 @@ export function Input({
             style={[styles.input]}
             placeholder={placeholder ?? "Digite aqui..."}
             value={value}
-            onChangeText={setValue}
+            onChangeText={() => setValue}
             onSubmitEditing={handleSearch}
             underlineColorAndroid="transparent"
           />

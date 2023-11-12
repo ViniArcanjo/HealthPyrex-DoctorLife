@@ -31,7 +31,7 @@ export default function App() {
     <NavigationContainer>
       <AuthProvider>
         <View style={styles.base}>
-          <StatusBar barStyle="dark-content" />
+          <StatusBar style="dark" />
           <Routes />
         </View>
       </AuthProvider>

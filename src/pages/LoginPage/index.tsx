@@ -11,7 +11,7 @@ import { AuthContext } from "../../context/auth.context";
 import { AppColors } from "../../config/colors";
 
 export function LoginPage({ navigation }) {
-  const { setKeepConnected, SignIn } = useContext(AuthContext);
+  const { setKeepConnected, signIn } = useContext(AuthContext);
 
   const [userEmail, setUserEmail] = useState("");
   const [userPass, setUserPass] = useState("");
@@ -31,7 +31,7 @@ export function LoginPage({ navigation }) {
       keepConnected: keepUserConnected,
     };
 
-    SignIn(user);
+    signIn(user);
 
     navigation.navigate("Home");
   }
@@ -59,14 +59,14 @@ export function LoginPage({ navigation }) {
       </View>
       <View style={styles.loginFormContainer}>
         <Input
-          onChange={setUserEmail}
+          onChange={() => setUserEmail}
           label={"Login"}
           placeholder={"Digite aqui seu email"}
           type={"email-address"}
         />
         <View style={styles.passwordInputContainer}>
           <Input
-            onChange={setUserPass}
+            onChange={() => setUserPass}
             label={"Senha"}
             placeholder={"Digite aqui sua senha"}
             type={"password"}
@@ -83,7 +83,7 @@ export function LoginPage({ navigation }) {
             <Checkbox
               style={styles.checkbox}
               value={keepUserConnected}
-              onValueChange={(value) => handleKeepUserConnected(value)}
+              onValueChange={() => handleKeepUserConnected()}
             />
             <Text style={styles.checkboxText}>Mantenha-me conectado</Text>
           </View>
