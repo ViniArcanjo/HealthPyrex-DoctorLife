@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
     borderColor: AppColors.primary,
   },
   text: {
-    fontSize: 24,
+    fontSize: 18,
   },
   wrapper: {
     alignItems: "flex-start",

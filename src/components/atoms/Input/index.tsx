@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { styles } from "./index.style";
+import { styles } from "./styles";
 import { AppColors } from "../../../config/colors";
 
 import Text from "../Text";
@@ -16,8 +16,8 @@ interface InputProps {
   label?: string;
   placeholder: string;
   type?: KeyboardTypeOptions | "password" | "search" | undefined;
-  onChange?: () => void;
-  onSearch?: (string) => void;
+  onChange?: (value: string) => void;
+  onSearch?: (value: string) => void;
 }
 export function Input({
   label,
@@ -39,7 +39,7 @@ export function Input({
 
   useEffect(() => {
     if (!value) {
-      onSearch("");
+      onSearch;
     }
   }, [value]);
 
@@ -62,7 +62,7 @@ export function Input({
             <MaterialCommunityIcons
               name={showPassword ? "eye" : "eye-off"}
               size={24}
-              color={AppColors.neutral_300}
+              color={AppColors.dark_700}
               style={styles.icon}
             />
           </TouchableWithoutFeedback>

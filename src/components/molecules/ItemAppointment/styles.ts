@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
   },
   appointment: {
     fontSize: 16,
-    color: AppColors.dark,
+    color: AppColors.dark_800,
   },
   doctor: {
     fontSize: 14,
@@ -32,6 +32,6 @@ export const styles = StyleSheet.create({
   },
   hours: {
     fontSize: 12,
-    color: AppColors.neutral_600,
+    color: AppColors.dark_800,
   },
 });

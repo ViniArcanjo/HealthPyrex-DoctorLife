@@ -1,26 +1,25 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from "react";
 
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { AuthContext } from '../context/auth.context'
-import { LoginPage } from '../pages/LoginPage'
-import Home from '../components/pages/Home'
-import Appointments from '../components/pages/Appointments'
-import Exams from '../components/pages/Exams'
-import More from '../components/pages/More'
-import Footer from '../components/organisms/Footer'
+import { AuthContext } from "../context/auth.context";
+import { LoginPage } from "../pages/LoginPage";
+import Home from "../components/pages/Home";
+import Appointments from "../components/pages/Appointments";
+import Exams from "../components/pages/Exams";
+import More from "../components/pages/More";
+import Footer from "../components/organisms/Footer";
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator();
 
 export default function Routes() {
-  const { user } = useContext(AuthContext)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const { user, isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
   useEffect(() => {
     if (user?.email && user?.password) {
-      setIsLoggedIn(true)
+      setIsLoggedIn(true);
     }
-  }, [user])
+  }, [user]);
 
   return (
     <>
@@ -36,5 +35,5 @@ export default function Routes() {
       </Stack.Navigator>
       {isLoggedIn && <Footer />}
     </>
-  )
+  );
 }

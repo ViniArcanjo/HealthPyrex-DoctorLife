@@ -2,12 +2,13 @@ import { StyleSheet } from "react-native";
 import { AppColors } from "../../../config/colors";
 
 export const styles = StyleSheet.create({
-  exame: {
-    fontSize: 16,
-    color: AppColors.dark,
+  container: {
+    flex: 1,
+    alignItems: "center",
+    paddingVertical: 48,
   },
-  contentDoctor: {
-    fontSize: 14,
-    color: AppColors.neutral_600,
+  leave: {
+    fontSize: 20,
+    color: AppColors.error,
   },
 });

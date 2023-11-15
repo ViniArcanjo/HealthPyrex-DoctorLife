@@ -1,4 +1,4 @@
-import { styles } from "./index.style";
+import { styles } from "./styles";
 import { useState } from "react";
 import { FlatList, View } from "react-native";
 

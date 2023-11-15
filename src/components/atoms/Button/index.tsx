@@ -1,16 +1,16 @@
-import { styles } from './index.style'
-import { Pressable, Text } from 'react-native'
+import { styles } from "./styles";
+import { Pressable, Text } from "react-native";
 
-const Button = ({ title, disabled = false, onPress }) => {
+const Button = ({ disabled = false, onPress, children }) => {
   return (
     <Pressable
       style={disabled ? styles.disabled : styles.button}
       onPress={onPress}
       disabled={disabled}
     >
-      <Text style={styles.text}>{title}</Text>
+      <Text style={styles.text}>{children}</Text>
     </Pressable>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;

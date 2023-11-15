@@ -7,9 +7,7 @@ export const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "space-around",
     height: 80,
-    paddingTop: 8,
-    borderTopColor: AppColors.neutral_600,
-    borderTopWidth: 0.2,
+    backgroundColor: AppColors.white_100,
   },
   item: {
     flexDirection: "column",
@@ -18,5 +16,8 @@ export const styles = StyleSheet.create({
   imageAppointment: {
     width: 32,
     height: 32,
+  },
+  text: {
+    fontSize: 12,
   },
 });

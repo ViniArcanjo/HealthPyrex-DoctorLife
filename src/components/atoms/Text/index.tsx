@@ -1,10 +1,15 @@
+import { TextProps } from "@rneui/base";
 import { Text as RNText, StyleSheet } from "react-native";
 
-const Text = (props) => {
+interface TextData extends TextProps {
+  bold?: boolean;
+}
+
+const Text = ({ bold, ...props }: TextData) => {
   return (
     <RNText
       {...props}
-      style={[props.style, props.bold ? styles.font700 : styles.font400]}
+      style={[props.style, bold ? styles.font700 : styles.font400]}
     />
   );
 };

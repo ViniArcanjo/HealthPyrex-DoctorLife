@@ -1,4 +1,4 @@
-import { styles } from "./index.style";
+import { styles } from "./styles";
 
 import { useState } from "react";
 import { FlatList, View } from "react-native";
@@ -52,11 +52,7 @@ const Exams = () => {
 
   return (
     <View style={styles.container}>
-      <Input
-        placeholder="Buscar"
-        onSearch={(value) => onSearch(value)}
-        type="search"
-      />
+      <Input placeholder="Buscar" onSearch={onSearch} type="search" />
 
       <FlatList
         data={examsList}

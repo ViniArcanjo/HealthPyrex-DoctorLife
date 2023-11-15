@@ -10,7 +10,8 @@ export const AppColors = {
   neutral_500: "#788089",
   neutral_600: "#424a52",
 
-  dark: "#1E1E1E",
+  dark_700: "#292929",
+  dark_800: "#1E1E1E",
   dark_900: "#000000",
 
   success: "#08a93c",

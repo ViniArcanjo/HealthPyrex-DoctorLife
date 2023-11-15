@@ -4,11 +4,14 @@ type AuthData = {
   user: any;
   signIn: (any) => void;
   setKeepConnected: (any) => void;
+  isLoggedIn: boolean;
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const AuthContext = createContext({} as AuthData);
 
 export default function AuthProvider({ children }) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -25,7 +28,9 @@ export default function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, signIn, setKeepConnected }}>
+    <AuthContext.Provider
+      value={{ user, signIn, setKeepConnected, isLoggedIn, setIsLoggedIn }}
+    >
       {children}
     </AuthContext.Provider>
   );
