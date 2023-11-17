@@ -1,4 +1,5 @@
 import { useState, createContext } from "react";
+import { User } from "../services/models/user";
 
 type AuthData = {
   user: any;
@@ -6,15 +7,15 @@ type AuthData = {
   setKeepConnected: (any) => void;
   isLoggedIn: boolean;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  onLeave: () => Promise<void>;
 };
 
 export const AuthContext = createContext({} as AuthData);
 
 export default function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState({
+  const [user, setUser] = useState<User>({
     email: "",
-    password: "",
     role: "",
     keepConnected: false,
   });
@@ -27,9 +28,20 @@ export default function AuthProvider({ children }) {
     setUser({ ...user, keepConnected });
   }
 
+  async function onLeave() {
+    await setIsLoggedIn(false), setUser({} as User);
+  }
+
   return (
     <AuthContext.Provider
-      value={{ user, signIn, setKeepConnected, isLoggedIn, setIsLoggedIn }}
+      value={{
+        user,
+        signIn,
+        setKeepConnected,
+        isLoggedIn,
+        setIsLoggedIn,
+        onLeave,
+      }}
     >
       {children}
     </AuthContext.Provider>

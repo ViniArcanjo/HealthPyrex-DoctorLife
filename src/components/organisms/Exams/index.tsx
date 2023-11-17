@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FlatList, View } from "react-native";
 
 import { Input } from "../../atoms/Input";
-import ItemList from "../../molecules/ItemList";
+import ExamItem from "../../molecules/ExamItem";
 
 const exams = [
   {
@@ -37,30 +37,27 @@ const Exams = () => {
   const [examsList, setExamsList] = useState(exams);
 
   const onSearch = (value) => {
-    setExamsList(exams);
-
-    if (value) {
-      const newList = exams.filter(
-        (q) =>
-          q.exame.toLocaleUpperCase().includes(value?.toLocaleUpperCase()) ||
-          q.doctor.toLocaleUpperCase().includes(value?.toLocaleUpperCase())
-      );
-
-      setExamsList(newList);
-    }
+    setExamsList(value);
   };
 
   return (
     <View style={styles.container}>
-      <Input placeholder="Buscar" onSearch={onSearch} type="search" />
+      <Input
+        placeholder="Buscar"
+        onSearch={onSearch}
+        type="search"
+        itens={examsList}
+        props={["exame", "doctor"]}
+      />
 
       <FlatList
         data={examsList}
         renderItem={({ item }) => (
           <View style={styles.itemContent}>
-            <ItemList
-              exame={item.exame}
-              doctor={item.doctor}
+            <ExamItem
+              key={item.key}
+              title={item.exame}
+              person={item.doctor}
               date={item.date}
             />
           </View>

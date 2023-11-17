@@ -85,7 +85,7 @@ const Footer = () => {
               size={32}
               color={AppColors.dark_800}
             />
-            <Text style={styles.text}>Atendimentos</Text>
+            <Text style={{ fontSize: 10, paddingTop: 2 }}>Atendimentos</Text>
           </TouchableOpacity>
         </>
       )}

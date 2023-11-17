@@ -9,7 +9,7 @@ import { AuthContext } from "../../../../src/context/auth.context";
 
 const More = () => {
   const { navigate } = useNavigation<any>();
-  const { setIsLoggedIn } = useContext(AuthContext);
+  const { onLeave } = useContext(AuthContext);
 
   const confirmLeave = () => {
     Alert.alert("Sair", "Deseja realmente sair?", [
@@ -19,8 +19,7 @@ const More = () => {
       {
         text: "Sim",
         onPress: () => {
-          setIsLoggedIn(false);
-          navigate("Login");
+          onLeave().then(() => navigate("Login"));
         },
       },
     ]);

@@ -46,11 +46,11 @@ export function LoginPage({ navigation }) {
     setIsDoctor(!isDoctor);
   }
 
-  function onChangeEmail(value) {
+  function onChangeEmail(value: string) {
     setUserEmail(value);
   }
 
-  function onChangePassword(value) {
+  function onChangePassword(value: string) {
     setUserPass(value);
   }
 

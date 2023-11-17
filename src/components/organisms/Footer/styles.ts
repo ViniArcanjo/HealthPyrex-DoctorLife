@@ -6,8 +6,9 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "flex-start",
     justifyContent: "space-around",
-    height: 80,
+    height: 90,
     backgroundColor: AppColors.white_100,
+    paddingTop: 10,
   },
   item: {
     flexDirection: "column",

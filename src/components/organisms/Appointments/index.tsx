@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FlatList, View } from "react-native";
 
 import { Input } from "../../atoms/Input";
-import ItemAppointment from "../../molecules/ItemAppointment";
+import Appointment from "../../molecules/Appointment";
 
 const appointment = [
   {
@@ -53,7 +53,7 @@ const Appointments = () => {
         data={appointmentList}
         renderItem={({ item }) => (
           <View style={styles.itemContent}>
-            <ItemAppointment
+            <Appointment
               appointment={item.appointment}
               doctor={item.doctor}
               date={item.date}

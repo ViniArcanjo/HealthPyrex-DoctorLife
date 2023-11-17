@@ -3,7 +3,7 @@ import { View } from "react-native";
 
 import Text from "../../atoms/Text";
 
-const ItemAppointment = ({ appointment, doctor, date }) => {
+const Appointment = ({ appointment, doctor, date }) => {
   return (
     <View>
       <Text style={styles.date} bold>
@@ -27,4 +27,4 @@ const ItemAppointment = ({ appointment, doctor, date }) => {
   );
 };
 
-export default ItemAppointment;
+export default Appointment;

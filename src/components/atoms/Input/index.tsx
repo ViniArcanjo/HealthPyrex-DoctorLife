@@ -17,31 +17,51 @@ interface InputProps {
   placeholder: string;
   type?: KeyboardTypeOptions | "password" | "search" | undefined;
   onChange?: (value: string) => void;
-  onSearch?: (value: string) => void;
+  onSearch?: (any) => void;
+  itens?: any[];
+  props?: string[];
 }
+
 export function Input({
   label,
   placeholder,
   type = "default",
   onChange,
   onSearch,
+  itens,
+  props,
 }: InputProps) {
-  const [value, setValue] = useState();
+  const [inital, setInitial] = useState(itens);
+  const [value, setValue] = useState<string>();
   const [showPassword, setShowPassword] = useState(false);
+
+  const handleSearch = () => {
+    onSearch(inital);
+
+    if (value) {
+      const newList = itens.filter(
+        (q) =>
+          q[props[0]]
+            .toLocaleUpperCase()
+            .includes(value?.toLocaleUpperCase()) ||
+          q[props[1]].toLocaleUpperCase().includes(value?.toLocaleUpperCase())
+      );
+
+      console.log(newList, itens, inital);
+
+      onSearch(newList);
+    }
+  };
+
+  const handleChange = (value) => {
+    setValue(value);
+
+    !value && onSearch(inital);
+  };
 
   function toggleShowPassword() {
     setShowPassword(!showPassword);
   }
-
-  function handleSearch() {
-    onSearch(value);
-  }
-
-  useEffect(() => {
-    if (!value) {
-      onSearch;
-    }
-  }, [value]);
 
   return (
     <View style={styles.wrapper}>
@@ -74,7 +94,7 @@ export function Input({
             style={[styles.input]}
             placeholder={placeholder ?? "Digite aqui..."}
             value={value}
-            onChangeText={() => setValue}
+            onChangeText={handleChange}
             onSubmitEditing={handleSearch}
             underlineColorAndroid="transparent"
           />
