@@ -4,12 +4,12 @@ import { useContext, useState } from "react";
 import { View, SafeAreaView, Alert, Switch } from "react-native";
 import Checkbox from "expo-checkbox";
 
-import Text from "../../components/atoms/Text";
-import Input from "../../components/atoms/Input";
-import Button from "../../components/atoms/Button";
+import Text from "../../../components/atoms/Text";
+import Input from "../../../components/atoms/Input";
+import Button from "../../../components/atoms/Button";
 
-import { AuthContext } from "../../context/auth.context";
-import { AppColors } from "../../config/colors";
+import { AuthContext } from "../../../context/auth.context";
+import { AppColors } from "../../../config/colors";
 
 export function LoginPage({ navigation }) {
   const { setKeepConnected, signIn } = useContext(AuthContext);

@@ -4,7 +4,6 @@ import { View, StyleSheet } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { AuthContext } from "../context/auth.context";
-import { LoginPage } from "../pages/LoginPage";
 
 import Home from "../components/pages/Home";
 import More from "../components/organisms/More";
@@ -13,6 +12,8 @@ import Exams from "../components/organisms/Exams";
 import Footer from "../components/organisms/Footer";
 import Patients from "../components/organisms/Patients";
 import Appointments from "../components/organisms/Appointments";
+import { LoginPage } from "../components/pages/LoginPage";
+
 import { AppColors } from "../config/colors";
 
 const Stack = createNativeStackNavigator();

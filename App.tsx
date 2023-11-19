@@ -15,8 +15,6 @@ import {
   Montserrat_700Bold,
 } from "@expo-google-fonts/montserrat";
 
-import { AppColors } from "./src/config/colors";
-
 import AuthProvider from "./src/context/auth.context";
 import Routes from "./src/routes/Routes";
 
@@ -49,9 +47,5 @@ export default function App() {
 const styles = StyleSheet.create({
   content: {
     flex: 1,
-  },
-  appBar: {
-    backgroundColor: AppColors.primary,
-    height: 100,
   },
 });
