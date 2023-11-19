@@ -3,7 +3,6 @@ export const AppColors = {
 
   white_100: "#FFFFFF",
   white_200: "#F5F5F5",
-  white: "#FFFFF",
 
   neutral_300: "#ECECEC",
   neutral_400: "#cecfd1",

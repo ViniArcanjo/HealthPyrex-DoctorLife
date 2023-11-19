@@ -31,7 +31,7 @@ const Footer = () => {
         <MaterialCommunityIcons
           name="home-variant"
           size={32}
-          color={AppColors.dark_800}
+          color={AppColors.primary}
         />
         <Text style={styles.text}>Inicio</Text>
       </TouchableOpacity>
@@ -45,7 +45,7 @@ const Footer = () => {
             <MaterialCommunityIcons
               name="medical-bag"
               size={32}
-              color={AppColors.dark_800}
+              color={AppColors.primary}
             />
             <Text style={styles.text}>Consultas</Text>
           </TouchableOpacity>
@@ -57,7 +57,7 @@ const Footer = () => {
             <MaterialCommunityIcons
               name="heart-pulse"
               size={32}
-              color={AppColors.dark_800}
+              color={AppColors.primary}
             />
             <Text style={styles.text}>Exames</Text>
           </TouchableOpacity>
@@ -71,7 +71,7 @@ const Footer = () => {
             <MaterialCommunityIcons
               name="account-multiple"
               size={32}
-              color={AppColors.dark_800}
+              color={AppColors.primary}
             />
             <Text style={styles.text}>Pacientes</Text>
           </TouchableOpacity>
@@ -83,7 +83,7 @@ const Footer = () => {
             <MaterialCommunityIcons
               name="heart-flash"
               size={32}
-              color={AppColors.dark_800}
+              color={AppColors.primary}
             />
             <Text style={{ fontSize: 10, paddingTop: 2 }}>Atendimentos</Text>
           </TouchableOpacity>
@@ -97,7 +97,7 @@ const Footer = () => {
         <MaterialCommunityIcons
           name="dots-horizontal"
           size={32}
-          color={AppColors.dark_800}
+          color={AppColors.primary}
         />
         <Text style={styles.text}>Mais</Text>
       </TouchableOpacity>

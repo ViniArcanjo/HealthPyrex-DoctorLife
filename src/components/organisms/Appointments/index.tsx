@@ -2,10 +2,11 @@ import { styles } from "./styles";
 import { useState } from "react";
 import { FlatList, View } from "react-native";
 
-import { Input } from "../../atoms/Input";
+import Input from "../../atoms/Input";
 import Appointment from "../../molecules/Appointment";
+import Container from "../../../components/atoms/Container";
 
-const appointment = [
+const appointments = [
   {
     key: "1",
     appointment: "Consulta Oftalmo",
@@ -27,27 +28,21 @@ const appointment = [
 ];
 
 const Appointments = () => {
-  const [appointmentList, setAppointmentList] = useState(appointment);
+  const [appointmentList, setAppointmentList] = useState(appointments);
 
   const onSearch = (value) => {
-    setAppointmentList(appointment);
-
-    if (value) {
-      const newList = appointmentList.filter(
-        (q) =>
-          q.appointment
-            .toLocaleUpperCase()
-            .includes(value?.toLocaleUpperCase()) ||
-          q.doctor.toLocaleUpperCase().includes(value?.toLocaleUpperCase())
-      );
-
-      setAppointmentList(newList);
-    }
+    setAppointmentList(value);
   };
 
   return (
-    <View style={styles.container}>
-      <Input placeholder="Buscar" onSearch={onSearch} type="search" />
+    <Container>
+      <Input
+        placeholder="Buscar"
+        onSearch={onSearch}
+        type="search"
+        itens={appointmentList}
+        props={["appointment", "doctor"]}
+      />
 
       <FlatList
         data={appointmentList}
@@ -62,7 +57,7 @@ const Appointments = () => {
         )}
         showsVerticalScrollIndicator={false}
       />
-    </View>
+    </Container>
   );
 };
 

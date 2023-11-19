@@ -1,4 +1,9 @@
-import { Keyboard, StyleSheet, View } from "react-native";
+import {
+  Keyboard,
+  StyleSheet,
+  View,
+  TouchableWithoutFeedback,
+} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 
@@ -30,19 +35,23 @@ export default function App() {
   return (
     <NavigationContainer>
       <AuthProvider>
-        <View style={styles.base} onTouchStart={() => Keyboard.dismiss()}>
-          <StatusBar style="dark" backgroundColor={AppColors.white_100} />
-          <Routes />
-        </View>
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+          <View style={styles.content}>
+            <StatusBar style="light" />
+            <Routes />
+          </View>
+        </TouchableWithoutFeedback>
       </AuthProvider>
     </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  base: {
+  content: {
     flex: 1,
-    backgroundColor: AppColors.white_200,
-    paddingTop: 48,
+  },
+  appBar: {
+    backgroundColor: AppColors.primary,
+    height: 100,
   },
 });

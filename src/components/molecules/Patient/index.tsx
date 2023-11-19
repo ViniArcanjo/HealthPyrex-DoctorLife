@@ -3,17 +3,17 @@ import { View } from "react-native";
 
 import Text from "../../atoms/Text";
 
-const ExamItem = ({ title, person, date }) => {
+const Patient = ({ patient, date, hours }) => {
   return (
-    <View>
+    <View style={styles.content}>
       <Text style={styles.title} bold>
-        {title}
+        {patient}
       </Text>
       <Text style={styles.description}>
-        {person} · Realizar até dia <Text bold>{date}</Text>
+        Última consulta: <Text bold>{date}</Text> às {hours}
       </Text>
     </View>
   );
 };
 
-export default ExamItem;
+export default Patient;

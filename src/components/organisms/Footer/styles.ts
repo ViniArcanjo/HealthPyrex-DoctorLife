@@ -9,6 +9,11 @@ export const styles = StyleSheet.create({
     height: 90,
     backgroundColor: AppColors.white_100,
     paddingTop: 10,
+
+    shadowColor: AppColors.dark_900,
+    shadowOffset: { width: 2, height: -4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   item: {
     flexDirection: "column",

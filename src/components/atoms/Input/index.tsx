@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { styles } from "./styles";
+
+import { useState } from "react";
 import {
   TextInput,
   View,
@@ -7,7 +9,6 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { styles } from "./styles";
 import { AppColors } from "../../../config/colors";
 
 import Text from "../Text";
@@ -22,7 +23,7 @@ interface InputProps {
   props?: string[];
 }
 
-export function Input({
+const Input = ({
   label,
   placeholder,
   type = "default",
@@ -30,7 +31,7 @@ export function Input({
   onSearch,
   itens,
   props,
-}: InputProps) {
+}: InputProps) => {
   const [inital, setInitial] = useState(itens);
   const [value, setValue] = useState<string>();
   const [showPassword, setShowPassword] = useState(false);
@@ -38,16 +39,16 @@ export function Input({
   const handleSearch = () => {
     onSearch(inital);
 
+    var values;
+
     if (value) {
-      const newList = itens.filter(
-        (q) =>
-          q[props[0]]
-            .toLocaleUpperCase()
-            .includes(value?.toLocaleUpperCase()) ||
-          q[props[1]].toLocaleUpperCase().includes(value?.toLocaleUpperCase())
+      const newList = itens.filter((q) =>
+        props.find((field) =>
+          q[field].toLocaleUpperCase().includes(value?.toLocaleUpperCase())
+        )
       );
 
-      console.log(newList, itens, inital);
+      console.log(newList);
 
       onSearch(newList);
     }
@@ -77,6 +78,7 @@ export function Input({
             value={value}
             onChangeText={onChange}
             underlineColorAndroid="transparent"
+            autoCorrect={false}
           />
           <TouchableWithoutFeedback onPress={toggleShowPassword}>
             <MaterialCommunityIcons
@@ -97,6 +99,7 @@ export function Input({
             onChangeText={handleChange}
             onSubmitEditing={handleSearch}
             underlineColorAndroid="transparent"
+            autoCorrect={false}
           />
           <TouchableWithoutFeedback onPress={handleSearch}>
             <MaterialCommunityIcons
@@ -118,9 +121,12 @@ export function Input({
             onChangeText={onChange}
             onSubmitEditing={handleSearch}
             underlineColorAndroid="transparent"
+            autoCorrect={false}
           />
         </View>
       )}
     </View>
   );
-}
+};
+
+export default Input;

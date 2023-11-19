@@ -1,11 +1,12 @@
 import { styles } from "./styles";
+
 import { useContext, useState } from "react";
 import { View, SafeAreaView, Alert, Switch } from "react-native";
 import Checkbox from "expo-checkbox";
 
 import Text from "../../components/atoms/Text";
+import Input from "../../components/atoms/Input";
 import Button from "../../components/atoms/Button";
-import { Input } from "../../components/atoms/Input";
 
 import { AuthContext } from "../../context/auth.context";
 import { AppColors } from "../../config/colors";
@@ -19,7 +20,6 @@ export function LoginPage({ navigation }) {
   const [isDoctor, setIsDoctor] = useState(false);
 
   function onUserEnterClick() {
-    Alert.alert("entrou");
     if (!userEmail || !userPass) {
       Alert.alert("Digite seu email e senha!");
       return;

@@ -1,12 +1,33 @@
 import { styles } from "./styles";
 import { Pressable, Text } from "react-native";
 
-const Button = ({ disabled = false, onPress, children }) => {
+const Button = ({
+  type = "default",
+  onPress,
+  padding = 8,
+  children,
+  ...props
+}) => {
+  const style = {
+    default: styles.default,
+    full: styles.full,
+    // primary: styles.primary,
+    // ghost: styles.blacked,
+    // dashed: styles.dashed,
+    // link: styles.link,
+    text: styles.text,
+    disabled: styles.disabled,
+  };
+
+  const classButton = style[type];
+
   return (
     <Pressable
-      style={disabled ? styles.disabled : styles.button}
+      style={
+        props.disabled ? styles.disabled : [classButton, { padding: padding }]
+      }
       onPress={onPress}
-      disabled={disabled}
+      {...props}
     >
       <Text style={styles.text}>{children}</Text>
     </Pressable>

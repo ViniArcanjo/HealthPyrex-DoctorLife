@@ -3,8 +3,9 @@ import { styles } from "./styles";
 import { useState } from "react";
 import { FlatList, View } from "react-native";
 
-import { Input } from "../../atoms/Input";
-import ExamItem from "../../molecules/ExamItem";
+import Input from "../../atoms/Input";
+import Exam from "../../molecules/Exam";
+import Container from "../../../components/atoms/Container";
 
 const exams = [
   {
@@ -41,7 +42,7 @@ const Exams = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <Container>
       <Input
         placeholder="Buscar"
         onSearch={onSearch}
@@ -53,18 +54,16 @@ const Exams = () => {
       <FlatList
         data={examsList}
         renderItem={({ item }) => (
-          <View style={styles.itemContent}>
-            <ExamItem
-              key={item.key}
-              title={item.exame}
-              person={item.doctor}
-              date={item.date}
-            />
-          </View>
+          <Exam
+            key={item.key}
+            title={item.exame}
+            person={item.doctor}
+            date={item.date}
+          />
         )}
         showsVerticalScrollIndicator={false}
       />
-    </View>
+    </Container>
   );
 };
 

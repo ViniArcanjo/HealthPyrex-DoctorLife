@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     position: "relative",
     width: "100%",
     borderRadius: 24,
-    borderWidth: 1,
+    borderWidth: 1.5,
     borderColor: AppColors.primary,
   },
   text: {
