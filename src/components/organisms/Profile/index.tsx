@@ -1,13 +1,15 @@
 import { styles } from "./styles";
 
 import { useContext } from "react";
-import { Alert, View } from "react-native";
+import { Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import Text from "../../../components/atoms/Text";
+import Container from "../../../components/atoms/Container";
+
 import { AuthContext } from "../../../../src/context/auth.context";
 
-const More = () => {
+const Profile = () => {
   const { navigate } = useNavigation<any>();
   const { onLeave } = useContext(AuthContext);
 
@@ -26,12 +28,12 @@ const More = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <Container paddingVertical={48}>
       <Text style={styles.leave} bold onPress={confirmLeave}>
         Sair
       </Text>
-    </View>
+    </Container>
   );
 };
 
-export default More;
+export default Profile;

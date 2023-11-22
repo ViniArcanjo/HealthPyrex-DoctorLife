@@ -1,7 +1,7 @@
 import { styles } from "./styles";
 
 import { useContext, useState } from "react";
-import { View, SafeAreaView, Alert, Switch } from "react-native";
+import { View, Alert, Switch, ScrollView } from "react-native";
 import Checkbox from "expo-checkbox";
 
 import Text from "../../../components/atoms/Text";
@@ -10,6 +10,7 @@ import Button from "../../../components/atoms/Button";
 
 import { AuthContext } from "../../../context/auth.context";
 import { AppColors } from "../../../config/colors";
+import Container from "../../../components/atoms/Container";
 
 export function LoginPage({ navigation }) {
   const { setKeepConnected, signIn } = useContext(AuthContext);
@@ -55,54 +56,65 @@ export function LoginPage({ navigation }) {
   }
 
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <View style={styles.switchContainer}>
-        <Text>Paciente</Text>
-        <Switch
-          style={styles.switch}
-          trackColor={{ false: AppColors.dark_800, true: AppColors.primary }}
-          onValueChange={toggleSwitch}
-          value={isDoctor}
-        />
-        <Text>Médico</Text>
+    <Container style={styles.wrapper}>
+      <View onStartShouldSetResponder={() => true}>
+        <Text style={styles.title}>HealthPyrex</Text>
+        <Text style={styles.subTitle} bold>
+          DoctorLife
+        </Text>
       </View>
-      <View style={styles.loginFormContainer}>
-        <Input
-          onChange={onChangeEmail}
-          label={"Login"}
-          placeholder={"Digite aqui seu email"}
-          type={"email-address"}
-        />
-        <View style={styles.passwordContainer}>
-          <View style={styles.passwordInputContainer}>
-            <Input
-              onChange={onChangePassword}
-              label={"Senha"}
-              placeholder={"Digite aqui sua senha"}
-              type={"password"}
-            />
-            <Text
-              style={styles.passwordText}
-              onPress={() =>
-                Alert.alert("Redirecionando para redefinição de senha...")
-              }
-            >
-              Esqueci minha senha
-            </Text>
-          </View>
-          <View style={styles.keepConnectedContainer}>
-            <Checkbox
-              style={styles.checkbox}
-              value={keepUserConnected}
-              onValueChange={() => handleKeepUserConnected()}
-            />
-            <Text style={styles.checkboxText}>Mantenha-me conectado</Text>
-          </View>
+      <View style={styles.login}>
+        <View style={styles.switchContainer}>
+          <Text>Paciente</Text>
+          <Switch
+            style={styles.switch}
+            trackColor={{
+              false: AppColors.dark_800,
+              true: AppColors.primary,
+            }}
+            onValueChange={toggleSwitch}
+            value={isDoctor}
+          />
+          <Text>Médico</Text>
         </View>
-        <Button onPress={onUserEnterClick} disabled={!userEmail || !userPass}>
-          ENTRAR
-        </Button>
+        <View style={styles.loginFormContainer}>
+          <Input
+            onChange={onChangeEmail}
+            label={"Login"}
+            placeholder={"Digite aqui seu email"}
+            type={"email-address"}
+          />
+          <View style={styles.passwordContainer}>
+            <View style={styles.passwordInputContainer}>
+              <Input
+                onChange={onChangePassword}
+                label={"Senha"}
+                placeholder={"Digite aqui sua senha"}
+                type={"password"}
+              />
+              <Text
+                style={styles.passwordText}
+                onPress={() =>
+                  Alert.alert("Redirecionando para redefinição de senha...")
+                }
+              >
+                Esqueci minha senha
+              </Text>
+            </View>
+            <View style={styles.keepConnectedContainer}>
+              <Checkbox
+                style={styles.checkbox}
+                value={keepUserConnected}
+                onValueChange={() => handleKeepUserConnected()}
+              />
+              <Text style={styles.checkboxText}>Mantenha-me conectado</Text>
+            </View>
+          </View>
+          <Button onPress={onUserEnterClick} disabled={!userEmail || !userPass}>
+            ENTRAR
+          </Button>
+        </View>
       </View>
-    </SafeAreaView>
+    </Container>
   );
 }

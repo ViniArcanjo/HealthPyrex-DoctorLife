@@ -1,6 +1,6 @@
 import { styles } from "./styles";
 import { useState } from "react";
-import { FlatList, View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 import Input from "../../atoms/Input";
 import Appointment from "../../molecules/Appointment";
@@ -25,6 +25,42 @@ const appointments = [
     doctor: "Iára Linhares",
     date: "19/11/2023 11:00",
   },
+  {
+    key: "4",
+    appointment: "Consulta Otorrino",
+    doctor: "Iára Linhares",
+    date: "19/11/2023 11:00",
+  },
+  {
+    key: "5",
+    appointment: "Consulta Otorrino",
+    doctor: "Iára Linhares",
+    date: "19/11/2023 11:00",
+  },
+  {
+    key: "6",
+    appointment: "Consulta Otorrino",
+    doctor: "Iára Linhares",
+    date: "19/11/2023 11:00",
+  },
+  {
+    key: "7",
+    appointment: "Consulta Otorrino",
+    doctor: "Iára Linhares",
+    date: "19/11/2023 11:00",
+  },
+  {
+    key: "8",
+    appointment: "Consulta Otorrino",
+    doctor: "Iára Linhares",
+    date: "19/11/2023 11:00",
+  },
+  {
+    key: "9",
+    appointment: "Consulta Otorrino",
+    doctor: "Iára Linhares",
+    date: "19/11/2023 11:00",
+  },
 ];
 
 const Appointments = () => {
@@ -37,26 +73,28 @@ const Appointments = () => {
   return (
     <Container>
       <Input
-        placeholder="Buscar"
+        placeholder="Pesquisar médicos, consultas"
         onSearch={onSearch}
         type="search"
         itens={appointmentList}
         props={["appointment", "doctor"]}
       />
 
-      <FlatList
-        data={appointmentList}
-        renderItem={({ item }) => (
-          <View style={styles.itemContent}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {appointmentList.map((item) => (
+          <View
+            style={styles.itemContent}
+            key={item.key}
+            onStartShouldSetResponder={() => true}
+          >
             <Appointment
               appointment={item.appointment}
               doctor={item.doctor}
               date={item.date}
             />
           </View>
-        )}
-        showsVerticalScrollIndicator={false}
-      />
+        ))}
+      </ScrollView>
     </Container>
   );
 };

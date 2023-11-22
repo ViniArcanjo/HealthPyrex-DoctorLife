@@ -3,6 +3,8 @@ import {
   StyleSheet,
   View,
   TouchableWithoutFeedback,
+  ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
@@ -17,6 +19,7 @@ import {
 
 import AuthProvider from "./src/context/auth.context";
 import Routes from "./src/routes/Routes";
+import { AppColors } from "./src/config/colors";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -31,21 +34,20 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <AuthProvider>
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-          <View style={styles.content}>
-            <StatusBar style="light" />
-            <Routes />
-          </View>
-        </TouchableWithoutFeedback>
-      </AuthProvider>
-    </NavigationContainer>
+    <AuthProvider>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <View style={styles.content}>
+          <StatusBar style="light" />
+          <Routes />
+        </View>
+      </TouchableWithoutFeedback>
+    </AuthProvider>
   );
 }
 
 const styles = StyleSheet.create({
   content: {
     flex: 1,
+    backgroundColor: AppColors.white_100,
   },
 });

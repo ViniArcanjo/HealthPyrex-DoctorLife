@@ -1,11 +1,17 @@
 import { styles } from "./styles";
 
 import { useContext } from "react";
+import { Image, View, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
+import Text from "../../../components/atoms/Text";
 import Button from "../../../components/atoms/Button";
 import Container from "../../../components/atoms/Container";
+import Exam from "../../../components/molecules/Exam";
+import Appointment from "../../../components/molecules/Appointment";
+
 import { AuthContext } from "../../../../src/context/auth.context";
+import { AppColors } from "../../../../src/config/colors";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
@@ -16,13 +22,54 @@ const Home = () => {
   };
 
   return (
-    <Container paddingVertical={48}>
-      {user.role === "patient" && (
-        <Button onPress={() => {}} type="full">
-          Agendar consulta
-        </Button>
-      )}
-    </Container>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{ flexGrow: 1 }}
+    >
+      <View style={styles.container} onStartShouldSetResponder={() => true}>
+        <View style={styles.infos}>
+          <Image
+            style={styles.avatar}
+            source={{
+              uri: "https://xsgames.co/randomusers/avatar.php?g=female",
+            }}
+          />
+
+          <Text style={styles.text} bold>
+            Bem vindo <Text>{user.email}</Text>
+          </Text>
+        </View>
+        <Container paddingVertical={48} gap={32}>
+          {user.role === "patient" && (
+            <>
+              <Button onPress={() => {}} type="full">
+                Agendar consulta
+              </Button>
+
+              <View style={styles.item}>
+                <Text style={{ color: AppColors.primary }} bold>
+                  Próximas consultas:
+                </Text>
+              </View>
+
+              <View style={styles.item}>
+                <Text style={{ color: AppColors.primary }} bold>
+                  Próximos exames:
+                </Text>
+                <Exam title="TSH" date="02/12/2023 15:00" />
+                <Exam title="TSH" date="02/12/2023 15:00" />
+                <Exam title="TSH" date="02/12/2023 15:00" />
+                <Exam title="TSH" date="02/12/2023 15:00" />
+                <Exam title="TSH" date="02/12/2023 15:00" />
+                <Exam title="TSH" date="02/12/2023 15:00" />
+                <Exam title="TSH" date="02/12/2023 15:00" />
+                <Exam title="TSH" date="02/12/2023 15:00" />
+              </View>
+            </>
+          )}
+        </Container>
+      </View>
+    </ScrollView>
   );
 };
 

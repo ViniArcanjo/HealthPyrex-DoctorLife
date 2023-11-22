@@ -1,7 +1,7 @@
 import { styles } from "./styles";
 
 import { useState } from "react";
-import { FlatList, View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 import Input from "../../atoms/Input";
 import Exam from "../../molecules/Exam";
@@ -44,25 +44,24 @@ const Exams = () => {
   return (
     <Container>
       <Input
-        placeholder="Buscar"
+        placeholder="Pesquisar médicos, exames"
         onSearch={onSearch}
         type="search"
         itens={examsList}
         props={["exame", "doctor"]}
       />
 
-      <FlatList
-        data={examsList}
-        renderItem={({ item }) => (
-          <Exam
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {examsList.map((item) => (
+          <View
+            style={{ paddingTop: 14 }}
             key={item.key}
-            title={item.exame}
-            person={item.doctor}
-            date={item.date}
-          />
-        )}
-        showsVerticalScrollIndicator={false}
-      />
+            onStartShouldSetResponder={() => true}
+          >
+            <Exam title={item.exame} date={item.date} />
+          </View>
+        ))}
+      </ScrollView>
     </Container>
   );
 };

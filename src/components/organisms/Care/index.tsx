@@ -1,7 +1,7 @@
 import { styles } from "./styles";
 
 import { useState } from "react";
-import { View, FlatList } from "react-native";
+import { View, ScrollView } from "react-native";
 
 import Input from "../../../components/atoms/Input";
 import Container from "../../../components/atoms/Container";
@@ -35,22 +35,24 @@ const Care = () => {
   return (
     <Container>
       <Input
-        placeholder="Buscar"
+        placeholder="Pesquisar pacientes"
         onSearch={onSearch}
         type="search"
         itens={careList}
         props={["patient"]}
       />
 
-      <FlatList
-        data={careList}
-        renderItem={({ item }) => (
-          <View style={styles.itemContent}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {careList.map((item) => (
+          <View
+            style={styles.itemContent}
+            onStartShouldSetResponder={() => true}
+          >
             <CareItem key={item.key} patient={item.patient} date={item.date} />
           </View>
-        )}
+        ))}
         showsVerticalScrollIndicator={false}
-      />
+      </ScrollView>
     </Container>
   );
 };

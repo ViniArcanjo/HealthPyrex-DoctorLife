@@ -2,6 +2,11 @@ import { StyleSheet } from "react-native";
 import { AppColors } from "../../../config/colors";
 
 export const styles = StyleSheet.create({
+  button: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   default: {
     borderRadius: 999,
     backgroundColor: AppColors.primary,
@@ -14,7 +19,7 @@ export const styles = StyleSheet.create({
     padding: 8,
   },
   full: {
-    borderRadius: 4,
+    borderRadius: 999,
     backgroundColor: AppColors.primary,
     padding: 8,
   },

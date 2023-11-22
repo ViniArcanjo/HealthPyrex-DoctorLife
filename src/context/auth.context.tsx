@@ -2,7 +2,7 @@ import { useState, createContext } from "react";
 import { User } from "../services/models/user";
 
 type AuthData = {
-  user: any;
+  user: User;
   signIn: (any) => void;
   setKeepConnected: (any) => void;
   isLoggedIn: boolean;

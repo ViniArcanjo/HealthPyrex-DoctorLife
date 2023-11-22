@@ -6,13 +6,15 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { AuthContext } from "../context/auth.context";
 
 import Home from "../components/pages/Home";
-import More from "../components/organisms/More";
+import Profile from "../components/organisms/Profile";
 import Care from "../components/organisms/Care";
 import Exams from "../components/organisms/Exams";
 import Footer from "../components/organisms/Footer";
 import Patients from "../components/organisms/Patients";
 import Appointments from "../components/organisms/Appointments";
 import { LoginPage } from "../components/pages/LoginPage";
+
+import { NavigationContainer } from "@react-navigation/native";
 
 import { AppColors } from "../config/colors";
 
@@ -41,7 +43,7 @@ export default function Routes() {
   };
 
   return (
-    <>
+    <NavigationContainer>
       <View style={styles.appBar} />
       <Stack.Navigator
         initialRouteName="Login"
@@ -69,10 +71,10 @@ export default function Routes() {
           component={Patients}
           options={options("Meus pacientes")}
         />
-        <Stack.Screen name="More" component={More} />
+        <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
       {isLoggedIn && <Footer />}
-    </>
+    </NavigationContainer>
   );
 }
 
