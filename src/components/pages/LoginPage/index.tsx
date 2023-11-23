@@ -15,8 +15,8 @@ import Container from "../../../components/atoms/Container";
 export function LoginPage({ navigation }) {
   const { setKeepConnected, signIn } = useContext(AuthContext);
 
-  const [userEmail, setUserEmail] = useState("");
-  const [userPass, setUserPass] = useState("");
+  const [userEmail, setUserEmail] = useState("joao.silva@gmail.com");
+  const [userPass, setUserPass] = useState("admin");
   const [keepUserConnected, setKeepUserConnected] = useState(false);
   const [isDoctor, setIsDoctor] = useState(false);
 
@@ -29,13 +29,12 @@ export function LoginPage({ navigation }) {
     const user = {
       email: userEmail,
       password: userPass,
-      role: isDoctor ? "doctor" : "patient",
-      keepConnected: keepUserConnected,
+      role: isDoctor ? 1 : 0,
     };
 
-    signIn(user);
-
-    navigation.navigate("Home");
+    signIn(user)
+      .then(() => navigation.navigate("Home"))
+      .catch((e) => Alert.alert(e.message.replace("Error: ", "")));
   }
 
   function handleKeepUserConnected() {

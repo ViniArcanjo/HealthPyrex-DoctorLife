@@ -20,8 +20,6 @@ const Footer = () => {
     navigate(value);
   };
 
-  console.log(user);
-
   return (
     <View style={styles.footer}>
       <TouchableOpacity
@@ -36,7 +34,7 @@ const Footer = () => {
         <Text style={styles.text}>Inicio</Text>
       </TouchableOpacity>
 
-      {user.role === "patient" ? (
+      {user.role === "Patient" ? (
         <>
           <TouchableOpacity
             style={styles.item}

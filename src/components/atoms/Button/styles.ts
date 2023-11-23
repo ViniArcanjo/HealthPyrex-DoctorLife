@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     borderRadius: 999,
     backgroundColor: AppColors.primary,
     opacity: 0.5,
-    padding: 8,
+    padding: 16,
   },
   full: {
     borderRadius: 999,

@@ -2,13 +2,10 @@ import { StyleSheet } from "react-native";
 import { AppColors } from "../../../config/colors";
 
 export const styles = StyleSheet.create({
-  content: {
-    flexDirection: "row",
-    gap: 8,
-  },
   date: {
     fontSize: 12,
     paddingBottom: 4,
+    color: AppColors.neutral_600,
   },
   hours: {
     fontSize: 12,
@@ -17,19 +14,20 @@ export const styles = StyleSheet.create({
   },
   card: {
     flex: 1,
-    gap: 4,
+    gap: 8,
     padding: 8,
+    backgroundColor: AppColors.white_100,
+
+    borderColor: AppColors.neutral_400,
     borderWidth: 0.2,
     borderRadius: 6,
-    borderColor: AppColors.primary,
-    backgroundColor: AppColors.primary,
   },
   appointment: {
     fontSize: 16,
-    color: AppColors.white_100,
+    color: AppColors.dark_700,
   },
   doctor: {
     fontSize: 14,
-    color: AppColors.white_100,
+    color: AppColors.neutral_600,
   },
 });

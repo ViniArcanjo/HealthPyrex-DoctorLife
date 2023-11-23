@@ -119,7 +119,7 @@ const Input = ({
             placeholder={placeholder ?? "Digite aqui..."}
             value={value}
             onChangeText={onChange}
-            onSubmitEditing={handleSearch}
+            // onSubmitEditing={handleSearch}
             underlineColorAndroid="transparent"
             autoCorrect={false}
           />

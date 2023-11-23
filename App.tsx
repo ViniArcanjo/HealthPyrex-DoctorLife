@@ -36,7 +36,7 @@ export default function App() {
   return (
     <AuthProvider>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View style={styles.content}>
+        <View style={styles.content} onStartShouldSetResponder={() => true}>
           <StatusBar style="light" />
           <Routes />
         </View>

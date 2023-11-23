@@ -12,10 +12,6 @@ const Button = ({
   const style = {
     default: styles.default,
     full: styles.full,
-    // primary: styles.primary,
-    // ghost: styles.blacked,
-    // dashed: styles.dashed,
-    // link: styles.link,
     text: styles.text,
     disabled: styles.disabled,
   };

@@ -21,13 +21,7 @@ import { AppColors } from "../config/colors";
 const Stack = createNativeStackNavigator();
 
 export default function Routes() {
-  const { user, isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
-
-  useEffect(() => {
-    if (user?.email && user?.password) {
-      setIsLoggedIn(true);
-    }
-  }, [user]);
+  const { user, isLoggedIn } = useContext(AuthContext);
 
   const options = (title: string) => {
     return {

@@ -36,11 +36,11 @@ const Home = () => {
           />
 
           <Text style={styles.text} bold>
-            Bem vindo <Text>{user.email}</Text>
+            Bem vinde <Text>{user.Name}</Text>
           </Text>
         </View>
         <Container paddingVertical={48} gap={32}>
-          {user.role === "patient" && (
+          {user.role === "Patient" && (
             <>
               <Button onPress={() => {}} type="full">
                 Agendar consulta
@@ -50,19 +50,17 @@ const Home = () => {
                 <Text style={{ color: AppColors.primary }} bold>
                   Próximas consultas:
                 </Text>
+                <Appointment
+                  appointment="Eletrocardiograma"
+                  doctor="Filipe Pedroso"
+                  date="02/12/2023 15:00"
+                />
               </View>
 
               <View style={styles.item}>
                 <Text style={{ color: AppColors.primary }} bold>
                   Próximos exames:
                 </Text>
-                <Exam title="TSH" date="02/12/2023 15:00" />
-                <Exam title="TSH" date="02/12/2023 15:00" />
-                <Exam title="TSH" date="02/12/2023 15:00" />
-                <Exam title="TSH" date="02/12/2023 15:00" />
-                <Exam title="TSH" date="02/12/2023 15:00" />
-                <Exam title="TSH" date="02/12/2023 15:00" />
-                <Exam title="TSH" date="02/12/2023 15:00" />
                 <Exam title="TSH" date="02/12/2023 15:00" />
               </View>
             </>
