@@ -15,6 +15,6 @@ api.interceptors.request.use((request) => {
 });
 
 axios.interceptors.response.use((response) => {
-  console.log("Response:", JSON.stringify(response, null, 2));
+  // console.log("Response:", JSON.stringify(response, null, 2));
   return response;
 });

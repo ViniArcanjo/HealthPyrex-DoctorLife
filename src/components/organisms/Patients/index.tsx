@@ -15,9 +15,12 @@ const Patients = () => {
   const [patients, setPatients] = useState<PatientType[]>();
 
   useEffect(() => {
-    api
-      .get(`Patient/GetByDoctorCrm?crm=${user.Crm}`)
-      .then((res) => setPatients(res.data));
+    user.Crm &&
+      api
+        .get(`Patient/GetByDoctorCrm?crm=${user.Crm.replace(/\//g, "%2F")}`)
+        .then((res) => {
+          setPatients(res.data);
+        });
   }, []);
 
   const onSearch = (value) => {
@@ -31,7 +34,7 @@ const Patients = () => {
         onSearch={onSearch}
         type="search"
         itens={patients}
-        props={["patient"]}
+        props={["name"]}
       />
 
       <ScrollView showsVerticalScrollIndicator={false}>

@@ -17,24 +17,24 @@ const Appointments = () => {
   const [appointments, setAppointments] = useState<AppointmentType[]>();
 
   useEffect(() => {
-    api
-      .get(
-        `Appointment/${
-          (user.Cpf && `GetByPatientCpf?cpf=${user.Cpf}`) ||
-          (user.Crm && `GetByDoctorCrm?crm=${user.Cpf}`)
-        }`
-      )
-      .then((res) => {
-        setIntial(res.data);
-        setAppointments(res.data);
-      });
-  }, []);
+    if (user.Crm || user.Cpf) {
+      api
+        .get(
+          `Appointment/${
+            (user.Cpf && `GetByPatientCpf?cpf=${user.Cpf}`) ||
+            (user.Crm && `GetByDoctorCrm?crm=${user.Crm.replace(/\//g, "%2F")}`)
+          }`
+        )
+        .then((res) => {
+          setIntial(res.data);
+          setAppointments(res.data);
+        });
+    }
+  }, [user]);
 
   const onSearch = (value) => {
     setAppointments(value);
   };
-
-  console.log(appointments);
 
   return (
     <Container>

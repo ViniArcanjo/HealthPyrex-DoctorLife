@@ -31,8 +31,8 @@ const CareItem = ({ care, patient, date }) => {
           />
         </View>
         <Text style={styles.patient}>
-          <Text bold>Doutor: </Text>
-          {patient}
+          <Text bold>Paciente: </Text>
+          {patient.name}
         </Text>
 
         <View>

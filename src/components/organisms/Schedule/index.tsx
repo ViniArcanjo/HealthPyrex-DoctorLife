@@ -30,8 +30,6 @@ const Schedule = ({ route }) => {
 
   const [description, setDescription] = useState("");
 
-  console.log(description);
-
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     setShow(false);
@@ -81,7 +79,6 @@ const Schedule = ({ route }) => {
       })
       .then(() => navigate("Doctors", { isScheduling: true }))
       .catch((e) => {
-        console.log(e);
         Alert.alert(
           "Erro ao confirmar agendamento da consulta. Tente novamente mais tarde!"
         );
@@ -89,7 +86,6 @@ const Schedule = ({ route }) => {
   };
 
   const onChangeDescription = (value) => {
-    console.log(value);
     setDescription(value);
   };
 

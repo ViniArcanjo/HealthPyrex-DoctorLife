@@ -18,17 +18,19 @@ const Exams = () => {
   const [exams, setExams] = useState<ExamType[]>();
 
   useEffect(() => {
-    api
-      .get(
-        `Test/${
-          (user.Cpf && `GetByPatientCpf?cpf=${user.Cpf}`) ||
-          (user.Crm && `GetByDoctorCrm?crm=${user.Cpf}`)
-        }`
-      )
-      .then((res) => {
-        setIntial(res.data);
-        setExams(res.data);
-      });
+    if (user.Crm || user.Cpf) {
+      api
+        .get(
+          `Test/${
+            (user.Cpf && `GetByPatientCpf?cpf=${user.Cpf}`) ||
+            (user.Crm && `GetByDoctorCrm?crm=${user.Crm.replace(/\//g, "%2F")}`)
+          }`
+        )
+        .then((res) => {
+          setIntial(res.data);
+          setExams(res.data);
+        });
+    }
   }, []);
 
   const onSearch = (value) => {

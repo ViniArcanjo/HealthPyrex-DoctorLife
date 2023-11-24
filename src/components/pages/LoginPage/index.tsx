@@ -32,8 +32,6 @@ export function LoginPage({ navigation }) {
       role: isDoctor ? 1 : 0,
     };
 
-    console.log(user);
-
     signIn(user)
       .then(() => navigation.navigate("Home"))
       .catch((e) => Alert.alert(e.message.replace("Error: ", "")));
@@ -45,7 +43,6 @@ export function LoginPage({ navigation }) {
   }
 
   function toggleSwitch(isDoctor) {
-    console.log(isDoctor);
     setIsDoctor(isDoctor);
   }
 

@@ -17,15 +17,11 @@ const Care = () => {
   const [care, setCare] = useState<Appointment[]>();
 
   useEffect(() => {
-    api
-      .get(
-        `Appointment/${
-          (user.Cpf && `GetByPatientCpf?cpf=${user.Cpf}`) ||
-          (user.Crm && `GetByDoctorCrm?crm=${user.Cpf}`)
-        }`
-      )
-      .then((res) => setCare(res.data));
-  }, []);
+    user.Crm &&
+      api
+        .get(`Appointment/GetByDoctorCrm?crm=${user.Crm.replace(/\//g, "%2F")}`)
+        .then((res) => setCare(res.data));
+  }, [user]);
 
   const onSearch = (value) => {
     setCare(value);
@@ -34,23 +30,23 @@ const Care = () => {
   return (
     <Container>
       <Input
-        placeholder="Pesquisar pacientes"
+        placeholder="Pesquisar atendimentos"
         onSearch={onSearch}
         type="search"
         itens={care}
-        props={["patient"]}
+        props={["title"]}
       />
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        {care.map((item) => (
+        {care?.map((item) => (
           <View
             style={styles.itemContent}
             onStartShouldSetResponder={() => true}
+            key={item.appointmentId}
           >
             <CareItem
-              key={item.appointmentId}
-              care={"teste"}
-              patient={item.patient}
+              care={item.title}
+              patient={item.patient.name}
               date={item.appointmentDate}
             />
           </View>

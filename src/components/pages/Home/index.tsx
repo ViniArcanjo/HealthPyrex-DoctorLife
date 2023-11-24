@@ -26,41 +26,43 @@ const Home = () => {
   const [appointments, setAppointments] = useState<AppointmentType[]>();
 
   useEffect(() => {
-    api
-      .get(
-        `Test/${
-          (user.Cpf && `GetByPatientCpf?cpf=${user.Cpf}`) ||
-          (user.Crm && `GetByDoctorCrm?crm=${user.Cpf}`)
-        }`
-      )
-      .then((res) => {
-        res.data.sort((a, b) => {
-          return (
-            new Date(a.testDate).valueOf() - new Date(b.testDate).valueOf()
-          );
+    if (user.Crm || user.Cpf) {
+      api
+        .get(
+          `Test/${
+            (user.Cpf && `GetByPatientCpf?cpf=${user.Cpf}`) ||
+            (user.Crm && `GetByDoctorCrm?crm=${user.Crm.replace(/\//g, "%2F")}`)
+          }`
+        )
+        .then((res) => {
+          res.data.sort((a, b) => {
+            return (
+              new Date(a.testDate).valueOf() - new Date(b.testDate).valueOf()
+            );
+          });
+
+          setExams(res.data);
         });
 
-        setExams(res.data);
-      });
+      api
+        .get(
+          `Appointment/${
+            (user.Cpf && `GetByPatientCpf?cpf=${user.Cpf}`) ||
+            (user.Crm && `GetByDoctorCrm?crm=${user.Crm.replace(/\//g, "%2F")}`)
+          }`
+        )
+        .then((res) => {
+          res.data.sort((a, b) => {
+            return (
+              new Date(a.appointmentDate).valueOf() -
+              new Date(b.appointmentDate).valueOf()
+            );
+          });
 
-    api
-      .get(
-        `Appointment/${
-          (user.Cpf && `GetByPatientCpf?cpf=${user.Cpf}`) ||
-          (user.Crm && `GetByDoctorCrm?crm=${user.Cpf}`)
-        }`
-      )
-      .then((res) => {
-        res.data.sort((a, b) => {
-          return (
-            new Date(a.appointmentDate).valueOf() -
-            new Date(b.appointmentDate).valueOf()
-          );
+          setAppointments(res.data);
         });
-
-        setAppointments(res.data);
-      });
-  }, []);
+    }
+  }, [user]);
 
   const onClickSchendule = () => {
     navigate("Doctors");

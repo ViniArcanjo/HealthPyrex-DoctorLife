@@ -32,8 +32,6 @@ export default function AuthProvider({ children }) {
 
       const user: User = jwtDecode(token);
 
-      console.log("user", user);
-
       if (user.IsActive === "True") {
         AsyncStorage.setItem("token", token);
 
@@ -45,7 +43,6 @@ export default function AuthProvider({ children }) {
         throw new Error("Usuário não está ativo");
       }
     } catch (error) {
-      console.log(error);
       throw new Error("Usuário ou senha incorretos");
     }
   }
