@@ -106,6 +106,7 @@ const Home = () => {
                     appointment={item.title}
                     doctor={item.doctor.name}
                     date={item.appointmentDate}
+                    description={item.description}
                   />
                 </View>
               ))}

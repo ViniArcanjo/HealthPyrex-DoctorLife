@@ -35,3 +35,17 @@ Na raíz do projeto, execute o comando:
 ```
 Garanta também que a Web API esteja rodando.
     
+## Utilizando a aplicação
+
+Para realizar o login, utilize uma das credenciais abaixo:
+
+```bash
+Como doutor(a)
+  email: laura.rocha@urologycenter.com
+  senha: admin
+
+Como paciente:
+  email: camila.costa@gmail.com
+  senha: admin
+```
+

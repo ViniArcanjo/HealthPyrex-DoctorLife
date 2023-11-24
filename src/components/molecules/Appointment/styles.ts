@@ -30,4 +30,8 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     color: AppColors.neutral_600,
   },
+  description: {
+    fontSize: 14,
+    color: AppColors.neutral_600,
+  },
 });

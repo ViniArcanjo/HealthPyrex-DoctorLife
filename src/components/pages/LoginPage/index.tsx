@@ -1,7 +1,7 @@
 import { styles } from "./styles";
 
 import { useContext, useState } from "react";
-import { View, Alert, Switch, ScrollView } from "react-native";
+import { View, Alert, Switch } from "react-native";
 import Checkbox from "expo-checkbox";
 
 import Text from "../../../components/atoms/Text";

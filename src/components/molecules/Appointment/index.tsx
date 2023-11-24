@@ -10,7 +10,7 @@ import {
   getHoursDate,
 } from "../../../../src/utils/utils";
 
-const Appointment = ({ appointment, doctor, date }) => {
+const Appointment = ({ appointment, doctor, date, description }) => {
   return (
     <View>
       <View style={styles.card}>
@@ -34,6 +34,8 @@ const Appointment = ({ appointment, doctor, date }) => {
           <Text bold>Doutor: </Text>
           {doctor}
         </Text>
+
+        <Text style={styles.description}>{description}</Text>
 
         <View>
           <Text style={styles.date} bold>

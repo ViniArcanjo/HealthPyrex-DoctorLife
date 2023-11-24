@@ -1,7 +1,6 @@
 import { styles } from "./styles";
 
 import { View, Image, Pressable } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
