@@ -1,7 +1,7 @@
 import { styles } from "./styles";
 
-import { useState, useContext, useEffect } from "react";
-import { TouchableOpacity, View, Alert } from "react-native";
+import { useState, useContext } from "react";
+import { TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -20,8 +20,6 @@ const Footer = () => {
     navigate(value);
   };
 
-  console.log(user);
-
   return (
     <View style={styles.footer}>
       <TouchableOpacity
@@ -36,7 +34,7 @@ const Footer = () => {
         <Text style={styles.text}>Inicio</Text>
       </TouchableOpacity>
 
-      {user.role === "patient" ? (
+      {user.role === "Patient" ? (
         <>
           <TouchableOpacity
             style={styles.item}
@@ -92,14 +90,14 @@ const Footer = () => {
 
       <TouchableOpacity
         style={styles.item}
-        onPress={() => onPressNavigate("More")}
+        onPress={() => onPressNavigate("Profile")}
       >
         <MaterialCommunityIcons
-          name="dots-horizontal"
+          name="account"
           size={32}
           color={AppColors.primary}
         />
-        <Text style={styles.text}>Mais</Text>
+        <Text style={styles.text}>Perfil</Text>
       </TouchableOpacity>
     </View>
   );

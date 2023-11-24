@@ -5,16 +5,13 @@ const Button = ({
   type = "default",
   onPress,
   padding = 8,
-  children,
+  height = 48,
+  children = null,
   ...props
 }) => {
   const style = {
     default: styles.default,
     full: styles.full,
-    // primary: styles.primary,
-    // ghost: styles.blacked,
-    // dashed: styles.dashed,
-    // link: styles.link,
     text: styles.text,
     disabled: styles.disabled,
   };
@@ -24,7 +21,9 @@ const Button = ({
   return (
     <Pressable
       style={
-        props.disabled ? styles.disabled : [classButton, { padding: padding }]
+        props.disabled
+          ? styles.disabled
+          : [classButton, styles.button, { padding: padding, height: height }]
       }
       onPress={onPress}
       {...props}

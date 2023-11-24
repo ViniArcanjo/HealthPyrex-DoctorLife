@@ -1,19 +1,49 @@
 import { styles } from "./styles";
 import { View } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
+import { AppColors } from "../../../../src/config/colors";
 import Text from "../../atoms/Text";
-const CareItem = ({ patient, date }) => {
+
+import {
+  getFormatDateDescriptionMonth,
+  getHoursDate,
+} from "../../../../src/utils/utils";
+
+const CareItem = ({ care, patient, date }) => {
   return (
-    <View style={styles.content}>
-      <Text style={styles.date} bold>
-        {date.substring(0, 10)}
-      </Text>
+    <View>
       <View style={styles.card}>
-        <Text style={styles.hours}>{date.substring(11, 16)}hs</Text>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Text style={styles.care} bold>
+            {care}
+          </Text>
+          <MaterialCommunityIcons
+            name="dots-horizontal"
+            size={24}
+            color={AppColors.primary}
+          />
+        </View>
         <Text style={styles.patient}>
           <Text bold>Paciente: </Text>
-          {patient}
+          {patient.name}
         </Text>
+
+        <View>
+          <Text style={styles.date} bold>
+            {getFormatDateDescriptionMonth(date)}
+            <Text style={styles.hours} bold>
+              {" "}
+              {getHoursDate(date)}hs
+            </Text>
+          </Text>
+        </View>
       </View>
     </View>
   );

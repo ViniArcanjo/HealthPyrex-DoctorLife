@@ -2,6 +2,14 @@ import { StyleSheet } from "react-native";
 import { AppColors } from "../../../config/colors";
 
 export const styles = StyleSheet.create({
+  title: {
+    fontSize: 40,
+    color: AppColors.primary,
+  },
+  subTitle: {
+    textAlign: "right",
+    color: AppColors.primary,
+  },
   checkbox: {
     width: 12,
     height: 12,
@@ -46,6 +54,12 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    gap: 48,
+    backgroundColor: AppColors.white_100,
+    borderRadius: 18,
+  },
+  login: {
+    alignItems: "center",
   },
   passwordContainer: {
     gap: 16,

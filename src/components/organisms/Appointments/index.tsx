@@ -1,62 +1,67 @@
 import { styles } from "./styles";
-import { useState } from "react";
-import { FlatList, View } from "react-native";
+import { useState, useEffect, useContext } from "react";
+import { ScrollView, View } from "react-native";
 
 import Input from "../../atoms/Input";
-import Appointment from "../../molecules/Appointment";
 import Container from "../../../components/atoms/Container";
+import Appointment from "../../molecules/Appointment";
 
-const appointments = [
-  {
-    key: "1",
-    appointment: "Consulta Oftalmo",
-    doctor: "Frank Gualberto",
-    date: "01/11/2023 08:00",
-  },
-  {
-    key: "2",
-    appointment: "Consulta Cardiologista",
-    doctor: "Neli Knupp",
-    date: "05/10/2023 17:00",
-  },
-  {
-    key: "3",
-    appointment: "Consulta Otorrino",
-    doctor: "Iára Linhares",
-    date: "19/11/2023 11:00",
-  },
-];
+import { api } from "../../../../src/services/api";
+import { AuthContext } from "../../../../src/context/auth.context";
+import { Appointment as AppointmentType } from "../../../../src/services/models/appointment";
 
 const Appointments = () => {
-  const [appointmentList, setAppointmentList] = useState(appointments);
+  const { user } = useContext(AuthContext);
+
+  const [inital, setIntial] = useState<AppointmentType[]>();
+  const [appointments, setAppointments] = useState<AppointmentType[]>();
+
+  useEffect(() => {
+    if (user.Crm || user.Cpf) {
+      api
+        .get(
+          `Appointment/${
+            (user.Cpf && `GetByPatientCpf?cpf=${user.Cpf}`) ||
+            (user.Crm && `GetByDoctorCrm?crm=${user.Crm.replace(/\//g, "%2F")}`)
+          }`
+        )
+        .then((res) => {
+          setIntial(res.data);
+          setAppointments(res.data);
+        });
+    }
+  }, [user]);
 
   const onSearch = (value) => {
-    setAppointmentList(value);
+    setAppointments(value);
   };
 
   return (
     <Container>
       <Input
-        placeholder="Buscar"
+        placeholder="Pesquisar consultas"
         onSearch={onSearch}
         type="search"
-        itens={appointmentList}
-        props={["appointment", "doctor"]}
+        itens={appointments}
+        props={["title"]}
+        initial={inital}
       />
 
-      <FlatList
-        data={appointmentList}
-        renderItem={({ item }) => (
-          <View style={styles.itemContent}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {appointments?.map((item) => (
+          <View
+            style={styles.itemContent}
+            key={item.appointmentId}
+            onStartShouldSetResponder={() => true}
+          >
             <Appointment
-              appointment={item.appointment}
-              doctor={item.doctor}
-              date={item.date}
+              appointment={item.title}
+              doctor={item.doctor.name}
+              date={item.appointmentDate}
             />
           </View>
-        )}
-        showsVerticalScrollIndicator={false}
-      />
+        ))}
+      </ScrollView>
     </Container>
   );
 };

@@ -6,13 +6,20 @@ export const styles = StyleSheet.create({
     paddingVertical: 16,
     borderBottomWidth: 0.2,
     borderBottomColor: AppColors.neutral_400,
+
+    gap: 8,
+    padding: 8,
+
+    borderColor: AppColors.neutral_400,
+    borderWidth: 0.2,
+    borderRadius: 6,
   },
   title: {
     fontSize: 16,
-    color: AppColors.neutral_600,
+    color: AppColors.dark_700,
   },
-  description: {
-    fontSize: 14,
+  lastAppointment: {
+    fontSize: 12,
     color: AppColors.neutral_600,
   },
 });
