@@ -1,5 +1,5 @@
 export type User = {
-  BirthDay?: boolean;
+  BirthDay?: string;
   Cpf?: string;
   Crm?: string;
   Expertise?: string;
@@ -9,4 +9,6 @@ export type User = {
   email?: string;
   role?: string;
   name?: string;
+  Gender?: string;
+  nameid?: string;
 };

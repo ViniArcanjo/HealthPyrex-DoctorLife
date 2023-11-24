@@ -7,6 +7,7 @@ import { JWTDecode, SignInCredentials } from "../services/models/authService";
 
 import { auth } from "../../src/services/auth/authService";
 import { api } from "../../src/services/api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type AuthData = {
   user: User;
@@ -31,10 +32,13 @@ export default function AuthProvider({ children }) {
 
       const user: User = jwtDecode(token);
 
-      console.log("user", user.IsActive);
+      console.log("user", user);
 
       if (user.IsActive === "True") {
+        AsyncStorage.setItem("token", token);
+
         api.defaults.headers["Authorization"] = `Bearer ${token}`;
+
         setUser(user);
         setIsLoggedIn(true);
       } else {
@@ -52,6 +56,7 @@ export default function AuthProvider({ children }) {
 
   async function onLeave() {
     await setIsLoggedIn(false), setUser({} as User);
+    await await AsyncStorage.removeItem("token");
   }
 
   return (

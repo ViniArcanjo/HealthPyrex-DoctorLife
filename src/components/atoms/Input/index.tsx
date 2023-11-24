@@ -1,6 +1,6 @@
 import { styles } from "./styles";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   TextInput,
   View,
@@ -10,6 +10,7 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { AppColors } from "../../../config/colors";
+import { Exam } from "../../../../src/services/models/exam";
 
 import Text from "../Text";
 
@@ -21,6 +22,7 @@ interface InputProps {
   onSearch?: (any) => void;
   itens?: any[];
   props?: string[];
+  initial?: any[];
 }
 
 const Input = ({
@@ -31,24 +33,20 @@ const Input = ({
   onSearch,
   itens,
   props,
+  initial,
 }: InputProps) => {
-  const [inital, setInitial] = useState(itens);
   const [value, setValue] = useState<string>();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSearch = () => {
-    onSearch(inital);
-
-    var values;
+    onSearch(initial);
 
     if (value) {
       const newList = itens.filter((q) =>
         props.find((field) =>
-          q[field].toLocaleUpperCase().includes(value?.toLocaleUpperCase())
+          q[field]?.toLocaleUpperCase().includes(value?.toLocaleUpperCase())
         )
       );
-
-      console.log(newList);
 
       onSearch(newList);
     }
@@ -56,8 +54,7 @@ const Input = ({
 
   const handleChange = (value) => {
     setValue(value);
-
-    !value && onSearch(inital);
+    !value && onSearch(initial);
   };
 
   function toggleShowPassword() {

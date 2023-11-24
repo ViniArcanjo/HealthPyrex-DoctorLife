@@ -6,7 +6,7 @@ const Button = ({
   onPress,
   padding = 8,
   height = 48,
-  children,
+  children = null,
   ...props
 }) => {
   const style = {

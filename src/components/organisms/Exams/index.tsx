@@ -1,64 +1,64 @@
 import { styles } from "./styles";
 
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import { ScrollView, View } from "react-native";
 
 import Input from "../../atoms/Input";
 import Exam from "../../molecules/Exam";
 import Container from "../../../components/atoms/Container";
+import { Exam as ExamType } from "src/services/models/exam";
 
-const exams = [
-  {
-    key: "1",
-    exame: "TSH",
-    doctor: "Frank Gualberto",
-    date: "01/11/2023",
-  },
-  {
-    key: "2",
-    exame: "Hemograma",
-    doctor: "Neli Knupp",
-    date: "05/10/2023",
-  },
-  {
-    key: "3",
-    exame: "Exame de urina",
-    doctor: "Iára Linhares",
-    date: "19/11/2023",
-  },
-  {
-    key: "4",
-    exame: "Exame de glicemia",
-    doctor: "Adso da Souza",
-    date: "22/11/2023",
-  },
-];
+import { api } from "../../../../src/services/api";
+import { AuthContext } from "../../../../src/context/auth.context";
 
 const Exams = () => {
-  const [examsList, setExamsList] = useState(exams);
+  const { user } = useContext(AuthContext);
+
+  const [inital, setIntial] = useState<ExamType[]>();
+  const [exams, setExams] = useState<ExamType[]>();
+
+  useEffect(() => {
+    api
+      .get(
+        `Test/${
+          (user.Cpf && `GetByPatientCpf?cpf=${user.Cpf}`) ||
+          (user.Crm && `GetByDoctorCrm?crm=${user.Cpf}`)
+        }`
+      )
+      .then((res) => {
+        setIntial(res.data);
+        setExams(res.data);
+      });
+  }, []);
 
   const onSearch = (value) => {
-    setExamsList(value);
+    setExams(value);
   };
 
   return (
     <Container>
       <Input
-        placeholder="Pesquisar médicos, exames"
+        placeholder="Pesquisar exames"
         onSearch={onSearch}
         type="search"
-        itens={examsList}
-        props={["exame", "doctor"]}
+        itens={exams}
+        props={["title", "description"]}
+        initial={inital}
       />
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        {examsList.map((item) => (
+        {exams?.map((item) => (
           <View
             style={{ paddingTop: 14 }}
-            key={item.key}
+            key={item.appointmentId}
             onStartShouldSetResponder={() => true}
           >
-            <Exam title={item.exame} date={item.date} />
+            <Exam
+              title={item.title}
+              description={item.description}
+              doctor={item.appointment.doctor.name}
+              date={item.testDate}
+            />
           </View>
         ))}
       </ScrollView>

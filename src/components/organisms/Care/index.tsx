@@ -1,35 +1,34 @@
 import { styles } from "./styles";
 
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import { View, ScrollView } from "react-native";
 
 import Input from "../../../components/atoms/Input";
 import Container from "../../../components/atoms/Container";
 import CareItem from "../../../components/molecules/CareItem";
 
-const care = [
-  {
-    key: "1",
-    patient: "Frank Gualberto",
-    date: "01/11/2023 08:00",
-  },
-  {
-    key: "2",
-    patient: "Neli Knupp",
-    date: "05/10/2023 17:00",
-  },
-  {
-    key: "3",
-    patient: "Iára Linhares",
-    date: "19/11/2023 11:00",
-  },
-];
+import { Appointment } from "../../../../src/services/models/appointment";
+import { AuthContext } from "../../../../src/context/auth.context";
+import { api } from "../../../../src/services/api";
 
 const Care = () => {
-  const [careList, setCareList] = useState(care);
+  const { user } = useContext(AuthContext);
+
+  const [care, setCare] = useState<Appointment[]>();
+
+  useEffect(() => {
+    api
+      .get(
+        `Appointment/${
+          (user.Cpf && `GetByPatientCpf?cpf=${user.Cpf}`) ||
+          (user.Crm && `GetByDoctorCrm?crm=${user.Cpf}`)
+        }`
+      )
+      .then((res) => setCare(res.data));
+  }, []);
 
   const onSearch = (value) => {
-    setCareList(value);
+    setCare(value);
   };
 
   return (
@@ -38,20 +37,24 @@ const Care = () => {
         placeholder="Pesquisar pacientes"
         onSearch={onSearch}
         type="search"
-        itens={careList}
+        itens={care}
         props={["patient"]}
       />
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        {careList.map((item) => (
+        {care.map((item) => (
           <View
             style={styles.itemContent}
             onStartShouldSetResponder={() => true}
           >
-            <CareItem key={item.key} patient={item.patient} date={item.date} />
+            <CareItem
+              key={item.appointmentId}
+              care={"teste"}
+              patient={item.patient}
+              date={item.appointmentDate}
+            />
           </View>
         ))}
-        showsVerticalScrollIndicator={false}
       </ScrollView>
     </Container>
   );

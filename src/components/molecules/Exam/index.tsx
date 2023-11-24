@@ -5,8 +5,9 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Text from "../../atoms/Text";
 
 import { AppColors } from "../../../../src/config/colors";
+import { getFormatDate } from "../../../../src/utils/utils";
 
-const Exam = ({ title, date }) => {
+const Exam = ({ title, description, doctor, date }) => {
   return (
     <View style={styles.card}>
       <View style={styles.content}>
@@ -19,10 +20,14 @@ const Exam = ({ title, date }) => {
           color={AppColors.primary}
         />
       </View>
+      <Text style={styles.description}>{description}</Text>
+      <Text style={styles.description} bold>
+        {doctor}
+      </Text>
       <Text style={styles.date} bold>
         Realizar até dia{" "}
         <Text style={styles.dateStyle} bold>
-          {date}
+          {getFormatDate(date)}
         </Text>
       </Text>
     </View>

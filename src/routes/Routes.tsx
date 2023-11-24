@@ -10,6 +10,8 @@ import Profile from "../components/organisms/Profile";
 import Care from "../components/organisms/Care";
 import Exams from "../components/organisms/Exams";
 import Footer from "../components/organisms/Footer";
+import Doctors from "../components/organisms/Doctors";
+import Schedule from "../components/organisms/Schedule";
 import Patients from "../components/organisms/Patients";
 import Appointments from "../components/organisms/Appointments";
 import { LoginPage } from "../components/pages/LoginPage";
@@ -17,22 +19,24 @@ import { LoginPage } from "../components/pages/LoginPage";
 import { NavigationContainer } from "@react-navigation/native";
 
 import { AppColors } from "../config/colors";
+import Text from "../components/atoms/Text";
 
 const Stack = createNativeStackNavigator();
 
 export default function Routes() {
   const { user, isLoggedIn } = useContext(AuthContext);
 
-  const options = (title: string) => {
+  const options = (title: string, headerBackVisible: boolean = false) => {
     return {
       title: title,
       headerStyle: { backgroundColor: AppColors.primary },
       headerTintColor: AppColors.white_100,
       headerShown: true,
-      headerBackVisible: false,
+      headerBackVisible: headerBackVisible,
       headerTitleStyle: {
         fontFamily: "Montserrat_700Bold",
       },
+      headerBackTitle: null,
     };
   };
 
@@ -66,6 +70,16 @@ export default function Routes() {
           options={options("Meus pacientes")}
         />
         <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen
+          name="Doctors"
+          component={Doctors}
+          options={options("Doutores", true)}
+        />
+        <Stack.Screen
+          name="Schedule"
+          component={Schedule}
+          options={options("Agendar consulta", true)}
+        />
       </Stack.Navigator>
       {isLoggedIn && <Footer />}
     </NavigationContainer>
@@ -75,6 +89,6 @@ export default function Routes() {
 const styles = StyleSheet.create({
   appBar: {
     backgroundColor: AppColors.primary,
-    height: 48,
+    height: 40,
   },
 });

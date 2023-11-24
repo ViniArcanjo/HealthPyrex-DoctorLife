@@ -1,17 +1,18 @@
 import { styles } from "./styles";
 
 import { useContext } from "react";
-import { Alert } from "react-native";
+import { Alert, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import Text from "../../../components/atoms/Text";
-import Container from "../../../components/atoms/Container";
+import Avatar from "../../../components/atoms/Avatar";
 
 import { AuthContext } from "../../../../src/context/auth.context";
+import { AppColors } from "../../../../src/config/colors";
 
 const Profile = () => {
   const { navigate } = useNavigation<any>();
-  const { onLeave } = useContext(AuthContext);
+  const { user, onLeave } = useContext(AuthContext);
 
   const confirmLeave = () => {
     Alert.alert("Sair", "Deseja realmente sair?", [
@@ -28,11 +29,16 @@ const Profile = () => {
   };
 
   return (
-    <Container paddingVertical={48}>
+    <View style={styles.container}>
+      <Avatar
+        title={<Text style={{ color: AppColors.white_100 }}>{user.Name}</Text>}
+        sex={user.Gender}
+        style={styles.avatar}
+      />
       <Text style={styles.leave} bold onPress={confirmLeave}>
         Sair
       </Text>
-    </Container>
+    </View>
   );
 };
 
