@@ -10,7 +10,7 @@ import {
   getHoursDate,
 } from "../../../../src/utils/utils";
 
-const CareItem = ({ care, patient, date }) => {
+const CareItem = ({ care, description, date, patient }) => {
   return (
     <View>
       <View style={styles.card}>
@@ -32,11 +32,14 @@ const CareItem = ({ care, patient, date }) => {
         </View>
         <Text style={styles.patient}>
           <Text bold>Paciente: </Text>
-          {patient.name}
+          {patient}
         </Text>
+
+        <Text style={styles.description}>{description}</Text>
 
         <View>
           <Text style={styles.date} bold>
+            {date}
             {getFormatDateDescriptionMonth(date)}
             <Text style={styles.hours} bold>
               {" "}

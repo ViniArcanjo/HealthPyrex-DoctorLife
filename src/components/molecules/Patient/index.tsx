@@ -15,7 +15,7 @@ const Patient = ({ patient, lastAppointment, age }) => {
       </Text>
       <Text style={styles.lastAppointment}>
         Última consulta:{" "}
-        <Text bold>{getFormatDateDescriptionMonth(lastAppointment)}</Text> às
+        <Text bold>{getFormatDateDescriptionMonth(lastAppointment)}</Text> às{" "}
         {getHoursDate(lastAppointment)}
       </Text>
     </View>

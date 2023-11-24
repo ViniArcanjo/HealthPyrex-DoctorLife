@@ -27,6 +27,8 @@ const Care = () => {
     setCare(value);
   };
 
+  console.log(care);
+
   return (
     <Container>
       <Input
@@ -48,6 +50,7 @@ const Care = () => {
               care={item.title}
               patient={item.patient.name}
               date={item.appointmentDate}
+              description={item.description}
             />
           </View>
         ))}
